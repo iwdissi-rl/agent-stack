@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#070A0F">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>iwd / llm</title>
+  <link rel="icon" href="static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="static/vendor/github-dark.min.css">
+  <link rel="stylesheet" href="static/app.css?v=35">
+  <script src="static/vendor/marked.min.js"></script>
+  <script src="static/vendor/highlight.min.js"></script>
+  <script src="static/vendor/chart.umd.js"></script>
+  <script type="module" src="static/app.js?v=38"></script>
+</head>
+<body>
+  <canvas id="stars" aria-hidden="true"></canvas>
+
+  <!-- ===== login ===== -->
+  <section id="login-view" class="hidden">
+    <div class="banner">Local only · sandboxed tools · uncensored model · owner access</div>
+    <div class="login-scene" aria-hidden="true"><i class="mark tl"></i><i class="mark tr"></i><i class="mark bl"></i><i class="mark br"></i>
+      <span class="code meta-tl">IWD / LLM · SIDE A</span><span class="code meta-br">LOCAL · SANDBOXED · UNCENSORED</span></div>
+    <form id="login-form" class="login card" autocomplete="on">
+      <span class="kicker">SIDE A / OWNER ONLY</span>
+      <h1>INSERT YOUR TAPE</h1>
+      <p class="muted">Owner sign-in for the local agent workbench.</p>
+      <label for="login-user">Username</label>
+      <input id="login-user" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+      <label for="login-pass">Password</label>
+      <input id="login-pass" name="password" type="password" autocomplete="current-password" required>
+      <button type="submit" class="primary wide">Sign in</button>
+      <p id="login-error" class="error"></p>
+    </form>
+  </section>
+
+  <!-- ===== app ===== -->
+  <div id="app-view" class="hidden">
+    <!-- desktop rail / mobile bottom tab bar (same buttons, different CSS) -->
+    <nav class="rail" aria-label="Sections">
+      <div class="dot" title="iwd / llm"></div>
+      <button data-page="overview" class="nav active" aria-label="Overview">
+        <svg viewBox="0 0 16 16"><path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5Zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5Zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5Zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5Z"/></svg>
+        <span class="lbl">Home</span>
+      </button>
+      <button data-page="console" class="nav" aria-label="Agent">
+        <svg viewBox="0 0 16 16"><path d="M0 2.75C0 1.78.78 1 1.75 1h12.5c.97 0 1.75.78 1.75 1.75v10.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .14.11.25.25.25h12.5a.25.25 0 0 0 .25-.25V2.75a.25.25 0 0 0-.25-.25ZM7 11a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 0 1.5h-4.5A.75.75 0 0 1 7 11ZM4.22 4.97a.75.75 0 0 1 1.06 0l2.5 2.5a.75.75 0 0 1 0 1.06l-2.5 2.5a.75.75 0 0 1-1.06-1.06L6.19 8 4.22 6.03a.75.75 0 0 1 0-1.06Z"/></svg>
+        <span class="lbl">Agent</span>
+      </button>
+      <button data-page="model" class="nav" aria-label="Model">
+        <svg viewBox="0 0 16 16"><path d="M8 0a8.2 8.2 0 0 1 .7.03l.33 1.86a6.1 6.1 0 0 1 1.47.6l1.55-1.08a8 8 0 0 1 1 1l-1.08 1.56c.27.46.47.95.6 1.47l1.86.33a8.2 8.2 0 0 1 0 1.4l-1.86.33a6.1 6.1 0 0 1-.6 1.47l1.08 1.55a8 8 0 0 1-1 1l-1.55-1.08a6.1 6.1 0 0 1-1.47.6l-.33 1.86a8.2 8.2 0 0 1-1.4 0l-.33-1.86a6.1 6.1 0 0 1-1.47-.6l-1.55 1.08a8 8 0 0 1-1-1l1.08-1.55a6.1 6.1 0 0 1-.6-1.47L.03 8.7a8.2 8.2 0 0 1 0-1.4l1.86-.33c.13-.52.33-1.01.6-1.47L1.41 3.94a8 8 0 0 1 1-1l1.56 1.08a6.1 6.1 0 0 1 1.47-.6L5.77.03A8.2 8.2 0 0 1 8 0Zm0 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z"/></svg>
+        <span class="lbl">Model</span>
+      </button>
+      <button data-page="evals" class="nav" aria-label="Evals">
+        <svg viewBox="0 0 16 16"><path d="M1.5 1.75V13.5h13.75a.75.75 0 0 1 0 1.5H.75a.75.75 0 0 1-.75-.75V1.75a.75.75 0 0 1 1.5 0Zm14.28 2.53-5.25 5.25a.75.75 0 0 1-1.06 0L7 7.06 4.28 9.78a.75.75 0 0 1-1.06-1.06l3.25-3.25a.75.75 0 0 1 1.06 0L10 7.94l4.72-4.72a.75.75 0 1 1 1.06 1.06Z"/></svg>
+        <span class="lbl">Evals</span>
+      </button>
+      <button data-page="skills" class="nav" aria-label="Skills">
+        <svg viewBox="0 0 16 16"><path d="M5.5 1a.5.5 0 0 0-.5.5V3H2.75A1.75 1.75 0 0 0 1 4.75v8.5c0 .966.784 1.75 1.75 1.75h10.5A1.75 1.75 0 0 0 15 13.25v-8.5A1.75 1.75 0 0 0 13.25 3H11V1.5a.5.5 0 0 0-.5-.5h-5ZM6.5 3V2.5h3V3h-3ZM2.5 4.75a.25.25 0 0 1 .25-.25h10.5a.25.25 0 0 1 .25.25v8.5a.25.25 0 0 1-.25.25H2.75a.25.25 0 0 1-.25-.25v-8.5Zm2.25 2a.75.75 0 0 0 0 1.5h6.5a.75.75 0 0 0 0-1.5h-6.5Zm0 3a.75.75 0 0 0 0 1.5h4a.75.75 0 0 0 0-1.5h-4Z"/></svg>
+        <span class="lbl">Skills</span>
+      </button>
+      <button data-page="toolbox" class="nav" aria-label="Toolbox">
+        <svg viewBox="0 0 16 16"><path d="M5 1.5A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5V3h2.25C14.22 3 15 3.78 15 4.75v8.5c0 .97-.78 1.75-1.75 1.75H2.75C1.78 15 1 14.22 1 13.25v-8.5C1 3.78 1.78 3 2.75 3H5V1.5Zm1.5 0V3h3V1.5h-3ZM2.5 4.75V7h11V4.75a.25.25 0 0 0-.25-.25H2.75a.25.25 0 0 0-.25.25Zm11 3.75h-4V10h-3V8.5h-4v4.75c0 .14.11.25.25.25h10.5a.25.25 0 0 0 .25-.25V8.5Z"/></svg>
+        <span class="lbl">Tools</span>
+      </button>
+      <button data-page="usage" class="nav" aria-label="Usage">
+        <svg viewBox="0 0 16 16"><path d="M1.75 13.5h12.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1-.75-.75V1.75a.75.75 0 0 1 1.5 0v11.75Zm2-2.25V8.5a.75.75 0 0 1 1.5 0v2.75a.75.75 0 0 1-1.5 0Zm3-6.5a.75.75 0 0 1 1.5 0v6.5a.75.75 0 0 1-1.5 0Zm3 3a.75.75 0 0 1 1.5 0v3.5a.75.75 0 0 1-1.5 0Zm3-5a.75.75 0 0 1 1.5 0v8.5a.75.75 0 0 1-1.5 0Z"/></svg>
+        <span class="lbl">Usage</span>
+      </button>
+      <button data-page="logs" class="nav" aria-label="Logs">
+        <svg viewBox="0 0 16 16"><path d="M2 2.75A.75.75 0 0 1 2.75 2h10.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 2.75Zm0 5A.75.75 0 0 1 2.75 7h10.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 7.75Zm0 5a.75.75 0 0 1 .75-.75h6.5a.75.75 0 0 1 0 1.5h-6.5a.75.75 0 0 1-.75-.75Z"/></svg>
+        <span class="lbl">Logs</span>
+      </button>
+      <div class="rail-spacer"></div>
+      <button id="rail-hide" class="nav desk-only" aria-label="Hide sidebar" title="Hide sidebar">
+        <svg viewBox="0 0 16 16"><path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 1.06L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06Z"/></svg>
+      </button>
+      <button class="nav logout desk-only" aria-label="Sign out" title="Sign out"><svg viewBox="0 0 16 16"><path d="M2 2.75C2 1.78 2.78 1 3.75 1h4.5a.75.75 0 0 1 0 1.5h-4.5a.25.25 0 0 0-.25.25v10.5c0 .14.11.25.25.25h4.5a.75.75 0 0 1 0 1.5h-4.5A1.75 1.75 0 0 1 2 13.25Zm9.28 1.97a.75.75 0 0 1 1.06 0l2.5 2.5a.75.75 0 0 1 0 1.06l-2.5 2.5a.75.75 0 1 1-1.06-1.06l1.22-1.22H6.75a.75.75 0 0 1 0-1.5h5.75l-1.22-1.22a.75.75 0 0 1 0-1.06Z"/></svg></button>
+    </nav>
+
+    <header class="topbar">
+      <span class="brand">iwd / llm</span>
+      <span id="tb-dot" class="sdot" title="model state"></span>
+      <span class="sep desk-only"></span>
+      <span class="field desk-only">profile <b id="tb-profile" class="mono">—</b></span>
+      <span class="field desk-only">ctx <b id="tb-ctx" class="mono">—</b></span>
+      <span class="field">gen <b id="tb-gen" class="mono">—</b></span>
+      <span class="field desk-only">gpu <b id="tb-gpu" class="mono">—</b></span>
+      <span class="grow"></span>
+      <span id="tb-job" class="pill muted-pill hidden"></span>
+      <span id="tb-model" class="pill desk-only" data-desk-only="1">model —</span>
+      <span id="tb-ws" class="pill desk-only" data-desk-only="1">stream closed</span>
+      <span class="pill blue desk-only">local only · sandboxed · uncensored</span>
+      <button id="tb-hide" class="ghost icon-btn tb-toggle" aria-label="Hide top bar" title="Hide top bar">
+        <svg viewBox="0 0 16 16"><path d="M3.22 10.53a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1-1.06 1.06L8 6.81 4.28 10.53a.75.75 0 0 1-1.06 0Z"/></svg>
+      </button>
+      <button class="ghost logout mob-only glass-circle" aria-label="Sign out"><svg viewBox="0 0 16 16"><path d="M2 2.75C2 1.78 2.78 1 3.75 1h4.5a.75.75 0 0 1 0 1.5h-4.5a.25.25 0 0 0-.25.25v10.5c0 .14.11.25.25.25h4.5a.75.75 0 0 1 0 1.5h-4.5A1.75 1.75 0 0 1 2 13.25Zm9.28 1.97a.75.75 0 0 1 1.06 0l2.5 2.5a.75.75 0 0 1 0 1.06l-2.5 2.5a.75.75 0 1 1-1.06-1.06l1.22-1.22H6.75a.75.75 0 0 1 0-1.5h5.75l-1.22-1.22a.75.75 0 0 1 0-1.06Z"/></svg></button>
+    </header>
+
+    <main>
+      <!-- Overview -->
+      <section data-view="overview" class="page">
+        <span class="kicker">SHEET 01 / STATION OVERVIEW</span><h1>Overview</h1>
+        <div class="grid3">
+          <div class="card"><h2>Model server</h2><dl class="kv" id="ov-model"></dl>
+            <div class="spark-wrap"><canvas id="spark" class="spark"></canvas><span class="muted small">generation tok/s, live</span></div></div>
+          <div class="card"><h2>Quick command</h2>
+            <form id="quick-form" class="stack">
+              <textarea id="quick-prompt" rows="3" placeholder="Ask the agent anything… (runs in the sandbox)"></textarea>
+              <button class="primary" type="submit">Queue task</button>
+            </form></div>
+          <div class="card"><h2>Services</h2><table class="grid" id="ov-services"></table>
+            <p class="muted small">Auto-restart on failure; a watchdog restarts hung services every minute.</p></div>
+          <div class="card span2"><h2>Recent activity</h2><table class="grid" id="ov-jobs"></table>
+            <a href="#console" class="link" data-goto="console">Open the agent console →</a></div>
+          <div class="card"><h2>Host</h2><dl class="kv" id="ov-host"></dl></div>
+          <div class="card span3"><h2>Crew</h2><dl class="kv" id="ov-crew"></dl><table class="grid" id="ov-agents"></table>
+            <p class="muted small">Agents running right now across all missions. Slots = min(profile <code>PARALLEL</code>, <code>CTX / AGENT_CTX</code>): all slots share one KV pool of CTX tokens.</p></div>
+        </div>
+      </section>
+
+      <!-- Console -->
+      <section id="console" data-view="console" class="page hidden console">
+        <div id="drawer-backdrop" class="drawer-backdrop"></div>
+        <aside class="jobs">
+          <div class="jobs-head"><button id="drawer-close" class="icon-btn glass-circle mob-only" type="button" aria-label="Close">
+              <svg viewBox="0 0 16 16"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 1 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"/></svg>
+            </button><div class="prof-wrap"><button id="profile-btn" class="profile-btn" type="button"><span class="pf-label">Profile</span><span id="profile-name">Main</span><span class="pf-chev">▾</span></button><div id="profile-menu" class="profile-menu hidden"></div></div><button id="new-thread" class="primary small">+ New chat</button></div>
+          <ul id="job-list"></ul>
+        </aside>
+        <div class="transcript-wrap">
+          <div class="transcript-head">
+            <button id="sidebar-btn" class="icon-btn glass-circle" aria-label="Chats" title="Chats">
+              <svg class="ic-desk" viewBox="0 0 16 16"><path d="M1 2.75A.75.75 0 0 1 1.75 2h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 2.75Zm0 5A.75.75 0 0 1 1.75 7h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 7.75ZM1.75 12h12.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Z"/></svg>
+              <svg class="ic-mob" viewBox="0 0 16 16"><path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 1.06L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06Z"/></svg>
+            </button>
+            <div class="th-text"><h2 id="tr-title">New chat</h2><div id="tr-meta" class="muted small"></div></div>
+            <span id="tr-ctx" class="ctxmeter hidden" title="context used by this thread's last turn"><i></i><b></b></span>
+            <button id="tr-compact" class="small hidden" title="Summarize this conversation and continue from the summary in a fresh context">Compact</button>
+            <button id="mission-btn" class="small hidden" title="Plan, crew, background tasks, timeline">Mission</button>
+            <button id="tr-cancel" class="danger hidden">Stop</button>
+            <span id="tr-spin" class="glass-circle spin hidden" title="working" aria-label="working"></span>
+            <button id="tr-more" class="icon-btn glass-circle mob-only" aria-label="More" title="More">
+              <svg viewBox="0 0 16 16"><path d="M8 9a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm-5 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm10 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg>
+            </button>
+          </div>
+          <section id="mission" class="mission hidden" aria-label="Mission">
+            <div class="m-head"><span id="m-title" class="mono"></span><span id="m-sum" class="muted small"></span><span class="grow"></span><button id="m-notify" class="ghost small" title="Send a live notice to the running crew (rides along in their next tool results)">📣 notify crew</button><button id="m-close" class="ghost small" aria-label="Hide mission">×</button></div>
+            <div class="m-grid">
+              <div class="m-col"><h3>Plan <span id="m-steps-n" class="muted small"></span></h3><ol id="m-steps" class="steps"></ol>
+                <h3>Crew <span id="m-crew-n" class="muted small"></span></h3><table class="grid members" id="m-crew"></table></div>
+              <div class="m-col"><h3>Claude Code <span id="m-cl-n" class="muted small"></span></h3><div id="m-claude" class="bgt"></div>
+                <h3>Background tasks <span id="m-bg-n" class="muted small"></span></h3><div id="m-bg" class="bgt"></div>
+                <h3>Deliverables <span id="m-deliv-n" class="muted small"></span></h3><div id="m-deliv" class="bgt"></div>
+                <h3>Checkpoints <span id="m-ck-n" class="muted small"></span></h3><ul id="m-ckpts" class="ckpts"></ul>
+                <details id="m-state-wrap" class="hidden"><summary class="small muted">Saved mission state (resume point)</summary><pre id="m-state" class="state"></pre></details>
+                <h3>Timeline</h3><ul id="m-notes" class="notes"></ul></div>
+            </div>
+          </section>
+          <div id="transcript" class="transcript"><p class="muted empty">Pick a chat, or write below · attach with + · the agent runs in the sandbox</p></div>
+          <div id="livebar" class="livebar hidden" aria-live="polite"></div>
+          <form id="composer" class="composer">
+            <div id="attach-row" class="attach-row hidden"></div>
+            <div class="composer-main">
+              <textarea id="prompt" rows="1" placeholder="Reply…" enterkeyhint="send"></textarea>
+              <div class="composer-row">
+                <button type="button" id="attach-btn" class="icon-btn glass-circle" aria-label="Attach files" title="Attach images, code, zips, documents (or paste / drop)">
+                  <svg viewBox="0 0 16 16"><path d="M7.25 2.75a.75.75 0 0 1 1.5 0v4.5h4.5a.75.75 0 0 1 0 1.5h-4.5v4.5a.75.75 0 0 1-1.5 0v-4.5h-4.5a.75.75 0 0 1 0-1.5h4.5v-4.5Z"/></svg>
+                </button>
+                <input id="file-input" type="file" multiple class="hidden">
+                <button type="button" id="mode-pill" class="pill blue mode-pill" title="Mode (tap to change)">chat</button>
+                <button type="button" id="effort-pill" class="pill effort-pill" title="Thinking effort (tap to change)">medium</button>
+                <span class="grow"></span>
+                <button type="button" id="opt-btn" class="icon-btn glass-circle" aria-label="Options" title="Mode, role, skills & limits">
+                  <svg viewBox="0 0 16 16"><path d="M8 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0 5.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3ZM6.5 13.5a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0Z"/></svg>
+                </button>
+                <button type="submit" class="send-btn" aria-label="Send">
+                  <svg viewBox="0 0 16 16"><path d="M8.75 13.25V4.56l3.22 3.22a.75.75 0 1 0 1.06-1.06l-4.5-4.5a.75.75 0 0 0-1.06 0l-4.5 4.5a.75.75 0 0 0 1.06 1.06l3.22-3.22v8.69a.75.75 0 0 0 1.5 0Z"/></svg>
+                </button>
+              </div>
+            </div>
+            <p id="send-note" class="send-note"></p>
+            <div id="composer-opts" class="composer-opts hidden">
+              <div class="sheet-handle" aria-hidden="true"></div>
+              <div class="opts-head"><b>Options</b><button type="button" id="opts-done" class="small primary">Done</button></div>
+              <label class="small muted">mode <select id="mode-sel" class="sel">
+                <option value="chat">chat</option><option value="coding">coding · crew</option>
+                <option value="research">research · crew</option><option value="data">data · crew</option>
+                <option value="specialist">one specialist</option></select></label>
+              <label id="role-wrap" class="small muted hidden">role <select id="role-sel" class="sel"></select></label>
+              <div class="effort-wrap"><span class="small muted">effort</span><div class="seg effort" id="effort-seg"></div></div>
+              <span id="mode-hint" class="small muted"></span>
+              <label class="chip auto-chip" title="A local decision model (Clef-Flash) reads your message and preloads the skills it needs"><input type="checkbox" id="auto-skills"> ⚡ auto skills</label>
+              <label class="chip auto-chip" title="Jev (the local decision model) spots trivial messages — hi, thanks, a quick fact — and answers them with one fast reply instead of starting the agent, whatever the effort setting"><input type="checkbox" id="quick-replies"> ⚡ quick replies</label>
+              <div id="skill-chips" class="chips"></div>
+              <label class="small muted">max turns <input id="max-turns" type="number" min="1" max="3000" value="40" class="num" inputmode="numeric"></label>
+              <label id="budget-wrap" class="small muted hidden">budget h <input id="budget-h" type="number" min="0.5" max="24" step="0.5" value="12" class="num" inputmode="decimal"></label>
+              <label id="deliver-wrap" class="small muted hidden">deliver every h <input id="deliver-h" type="number" min="0" max="24" step="0.5" value="2" class="num" inputmode="decimal" title="0 = no deliverable cadence"></label>
+              <label id="followup-wrap" class="small muted hidden"><input id="followup" type="checkbox" checked> continue this thread</label>
+            </div>
+            <div id="opts-backdrop" class="opts-backdrop"></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Model -->
+      <section data-view="model" class="page hidden">
+        <span class="kicker">SHEET 02 / MODEL ROOM</span><h1>Model &amp; tuning</h1>
+        <div class="grid3">
+          <div class="card"><h2>Profiles</h2><div id="profile-list"></div>
+            <p class="muted small">Activating a profile restarts llama-server (~15 s warm, minutes cold). A running task fails.</p></div>
+          <div class="card span2"><h2>Tune <span id="tune-name" class="mono muted"></span></h2>
+            <form id="tune-form" class="tune"></form>
+            <div class="row btnrow"><button id="tune-save" class="primary">Save &amp; restart</button>
+              <button id="tune-save-only">Save only</button><span class="grow"></span>
+              <button id="model-restart">Restart server</button>
+              <button id="bench">Benchmark</button></div>
+            <p id="tune-msg" class="small"></p>
+            <div id="profile-notes" class="notes muted small"></div></div>
+          <div class="card span3"><h2>Model server log</h2><pre id="model-log" class="log"></pre></div>
+        </div>
+      </section>
+
+      <!-- Evals -->
+      <section data-view="evals" class="page hidden">
+        <span class="kicker">SHEET 03 / TEST BENCH</span><h1>Evaluations</h1>
+        <div class="card"><div class="row">
+          <button id="eval-all" class="primary">Run full suite (24)</button>
+          <span class="muted small">or only:</span>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" value="R" class="eval-cat"> research</label>
+            <label class="chip"><input type="checkbox" value="T" class="eval-cat"> tools</label>
+            <label class="chip"><input type="checkbox" value="C" class="eval-cat"> coding</label>
+            <label class="chip"><input type="checkbox" value="L" class="eval-cat"> long ctx</label>
+            <label class="chip"><input type="checkbox" value="H" class="eval-cat"> hard</label>
+          </div>
+          <button id="eval-some">Run selected</button></div>
+          <p class="muted small">Runs queue behind agent tasks · full suite ≈ 35 min.</p></div>
+        <div id="eval-runs"></div>
+      </section>
+
+      <!-- Skills -->
+      <section data-view="skills" class="page hidden skills">
+        <span class="kicker">SHEET 04 / SKILL LIBRARY</span><h1>Skills</h1>
+        <div class="card">
+          <div class="row">
+            <input id="sk-q" type="search" class="grow" placeholder="Filter installed skills, or search skills.sh / ClawHub / GitHub / official…" autocomplete="off">
+            <button id="sk-search" class="primary">Search registries</button>
+          </div>
+          <div class="row">
+            <input id="sk-src" class="grow" placeholder="Import: /path/to/skill · ~/.claude/skills/name · github.com/owner/repo/tree/main/skills/x · official/… · skills-sh/… · file.zip / gpt-export.json" autocomplete="off">
+            <button id="sk-import">Import</button>
+            <select id="sk-bundle" class="sel"><option value="">curated bundle…</option></select>
+            <button id="sk-bundle-go">Install bundle</button>
+          </div>
+          <p class="muted small">Imports are normalised for Hermes (≤60-char description, Hermes tool names, provenance in <code>metadata.port</code>), scanned by skills-guard (trust per Hermes' trusted-repo list), then dropped into <code>hermes-home/skills/&lt;category&gt;/</code>. New skills are live for the next agent run — no restart. CLI: <code>bin/skillport</code>.</p>
+          <div id="sk-results"></div>
+          <pre id="sk-log" class="log hidden"></pre>
+        </div>
+        <div class="card">
+          <h2>Router <span class="muted small">— what the decision model would preload for a request (nothing is launched)</span></h2>
+          <div class="row"><input id="rt-q" class="grow" placeholder="e.g. build a landing page for my bike light startup" autocomplete="off"><button id="rt-go">Ask the router</button></div>
+          <div id="rt-out" class="small"></div>
+        </div>
+        <div id="sk-list"></div>
+      </section>
+
+      <!-- Toolbox -->
+      <section data-view="toolbox" class="page hidden toolbox">
+        <div class="u-head"><div><span class="kicker">SHEET 05 / PERSISTENT TOOLBOX</span><h1>Toolbox</h1></div><div class="seg" id="tx-range">
+          <button data-d="7">7d</button><button data-d="30" class="on">30d</button><button data-d="90">90d</button><button data-d="365">1y</button></div></div>
+        <p class="muted small">The agent's persistent toolbox at <code>/mnt/data/la-toolbox</code>: everything it installs with <code>tb install|pip|npm|env</code> and registers with <code>tb register</code> survives every chat, mission and sandbox restart. Every use (commands, recipes looked up, installs, host runs) is counted here.</p>
+        <div class="u-kpis" id="tx-kpis"></div>
+        <div class="u-grid">
+          <div class="card u-wide"><h2>Uses per day</h2><div class="u-chart"><canvas id="txc-days"></canvas></div></div>
+          <div class="card"><h2>Most used</h2><div class="u-chart tall"><canvas id="txc-top"></canvas></div></div>
+          <div class="card"><h2>Where &amp; what</h2><div class="u-chart"><canvas id="txc-kinds"></canvas></div><div id="tx-disk" class="small disk"></div></div>
+        </div>
+        <div class="card">
+          <div class="row">
+            <input id="tx-q" type="search" class="grow" placeholder="Filter tools (name, description, run command)…" autocomplete="off">
+            <button id="tx-doctor" title="re-check that every registered command still resolves">Doctor</button>
+            <button id="tx-refresh" title="reload">Refresh</button>
+          </div>
+          <div class="row">
+            <select id="tx-kind" class="sel"><option value="conda">conda-forge</option><option value="pip">pip → tbpy venv</option><option value="npm">npm (global)</option></select>
+            <input id="tx-pkgs" class="grow" placeholder="packages to install, e.g.  nmap  ·  rich typer  ·  @mermaid-js/mermaid-cli" autocomplete="off">
+            <button id="tx-install" class="primary">Install into the toolbox</button>
+          </div>
+          <p class="muted small">Installs run <code>tb</code> on the host, into the same <code>/mnt/data/la-toolbox</code> the sandbox sees — the agent can use the result in its next command, no restart. <span id="tx-doctor-out"></span></p>
+          <pre id="tx-log" class="log hidden"></pre>
+        </div>
+        <div id="tx-list"></div>
+        <div class="card"><h2>Host runs <span class="muted small">— scripts from <code>la-toolbox/host/</code> run on the real desktop via <code>host_run</code></span></h2><div id="tx-host"></div></div>
+        <div class="card"><h2>Recent activity</h2><div id="tx-recent"></div></div>
+      </section>
+
+      <!-- Usage -->
+      <section data-view="usage" class="page hidden usage">
+        <div class="u-head"><div><span class="kicker">SHEET 06 / USAGE LEDGER</span><h1>Usage</h1></div><div class="seg" id="u-range">
+          <button data-d="1">24h</button><button data-d="7">7d</button><button data-d="30" class="on">30d</button><button data-d="90">90d</button><button data-d="365">1y</button></div></div>
+        <div class="u-kpis" id="u-kpis"></div>
+        <div class="u-grid">
+          <div class="card u-wide"><h2>Tokens per day</h2><div class="u-chart tall"><canvas id="uc-tokens"></canvas></div></div>
+          <div class="card"><h2>Agent time per day</h2><div class="u-chart"><canvas id="uc-time"></canvas></div></div>
+          <div class="card"><h2>Runs per day</h2><div class="u-chart"><canvas id="uc-jobs"></canvas></div></div>
+          <div class="card"><h2>Modes</h2><div class="u-chart"><canvas id="uc-modes"></canvas></div></div>
+          <div class="card"><h2>Effort</h2><div class="u-chart"><canvas id="uc-effort"></canvas></div></div>
+          <div class="card"><h2>Top tools</h2><div class="u-chart tall"><canvas id="uc-tools"></canvas></div></div>
+          <div class="card"><h2>Crew roles</h2><div class="u-chart tall"><canvas id="uc-roles"></canvas></div></div>
+          <div class="card u-wide"><h2>When you use it <span class="muted small">runs by weekday × hour</span></h2><div id="u-heat" class="heat"></div></div>
+        </div>
+      </section>
+
+      <!-- Logs -->
+      <section data-view="logs" class="page hidden">
+        <span class="kicker">SHEET 07 / SERVICE LOGS</span><h1>Logs</h1>
+        <div class="row"><select id="log-name">
+          <option value="model">model server</option><option value="embed">embeddings</option>
+          <option value="hud">hud</option><option value="decide">decision model</option><option value="relay">sandbox relay</option><option value="watchdog">watchdog</option>
+        </select><label class="small muted"><input id="log-follow" type="checkbox" checked> follow</label></div>
+        <pre id="log-view" class="log tall"></pre>
+      </section>
+    </main>
+  </div>
+
+  <div id="sheet-backdrop" class="sheet-backdrop hidden"></div>
+  <section id="chat-sheet" class="sheet hidden" aria-label="Chat actions">
+    <div class="sheet-handle" aria-hidden="true"></div>
+    <div class="sheet-head"><button id="cs-close" class="icon-btn glass-circle" aria-label="Close"><svg viewBox="0 0 16 16"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 1 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"/></svg></button>
+      <b id="cs-title">Chat</b><span class="grow"></span><button id="cs-logout" class="icon-btn glass-circle logout" aria-label="Sign out" title="Sign out"><svg viewBox="0 0 16 16"><path d="M2 2.75C2 1.78 2.78 1 3.75 1h4.5a.75.75 0 0 1 0 1.5h-4.5a.25.25 0 0 0-.25.25v10.5c0 .14.11.25.25.25h4.5a.75.75 0 0 1 0 1.5h-4.5A1.75 1.75 0 0 1 2 13.25Zm9.28 1.97a.75.75 0 0 1 1.06 0l2.5 2.5a.75.75 0 0 1 0 1.06l-2.5 2.5a.75.75 0 1 1-1.06-1.06l1.22-1.22H6.75a.75.75 0 0 1 0-1.5h5.75l-1.22-1.22a.75.75 0 0 1 0-1.06Z"/></svg></button></div>
+    <div class="sheet-label">This chat</div>
+    <div class="sheet-group" id="cs-info"></div>
+    <div class="sheet-group">
+      <button id="cs-new" class="sheet-item" type="button"><span>New chat</span><i>＋</i></button>
+      <button id="cs-chats" class="sheet-item" type="button"><span>All chats</span><i>›</i></button>
+      <button id="cs-mission" class="sheet-item hidden" type="button"><span>Mission panel</span><i>›</i></button>
+      <button id="cs-compact" class="sheet-item hidden" type="button"><span>Compact this conversation</span><i>›</i></button>
+      <button id="cs-stop" class="sheet-item danger hidden" type="button"><span>Stop the agent</span><i>■</i></button>
+    </div>
+    <div class="sheet-label">Profile</div>
+    <div class="sheet-group"><button id="cs-profile" class="sheet-item" type="button"><span>Chat profile</span><i id="cs-profile-name" class="val">Main</i></button></div>
+  </section>
+  <button id="tb-show" class="float-toggle" aria-label="Show top bar" title="Show top bar">
+    <svg viewBox="0 0 16 16"><path d="M12.78 5.22a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L3.22 6.28a.75.75 0 0 1 1.06-1.06L8 8.94l3.72-3.72a.75.75 0 0 1 1.06 0Z"/></svg>
+  </button>
+  <button id="rail-show" class="float-toggle" aria-label="Show sidebar" title="Show sidebar">
+    <svg viewBox="0 0 16 16"><path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06Z"/></svg>
+  </button>
+  <div id="lightbox" class="lightbox hidden"><img alt=""></div>
+</body>
+</html>

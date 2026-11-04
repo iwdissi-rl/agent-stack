@@ -1,0 +1,17 @@
+/* luxe — dark luxury: ink-black pages, champagne gold, Cormorant display, Outfit body */
+:root { --paper: #0e0c12; --ink: #e8e2d6; --heading: #f5ecd7; --muted: #8d8576; --accent: #d8b46a; --accent-2: #b58cff; --accent-soft: #6b5a35;
+  --hairline: #2d2833; --panel: #17141d; --zebra: #141118; --card: #15121a; --ok: #7fd1a3; --warn: #f0c46a; --bad: #ff7b7b; --strong: #f5ecd7;
+  --font-display: "Cormorant Garamond", "Playfair Display", "Noto Serif CJK SC", serif; --font-display-alt: "Cormorant Garamond", serif;
+  --font-body: "Outfit", "Noto Sans CJK SC", sans-serif; --font-ui: "Outfit", "Noto Sans CJK SC", sans-serif; --font-mono: "JetBrains Mono", monospace;
+  --body-size: 9.8pt; --h2-size: 30pt; --h2-weight: 600; --dropcap-size: 50pt; --radius: 1.5mm;
+  --cover-bg: #08070b; --cover-ink: #f8f0dc; --cover-sub: #c9bea6; --cover-accent: #e2c27d;
+  --cover-art: radial-gradient(ellipse at 20% 10%, rgba(216,180,106,.38) 0, transparent 55%), radial-gradient(ellipse at 90% 85%, rgba(140,90,255,.30) 0, transparent 55%), linear-gradient(180deg, #121018, #07060a);
+  --cover-title-size: 60pt; --cover-title-weight: 600; --th-bg: #1d1924; --th-ink: #d8b46a; --tile-bg: #17141d; --tile-num: #e2c27d;
+  --code-bg: #07060a; --code-ink: #e8e2d6; --code-inline-bg: #221d29; --code-inline-ink: #e2c27d; --hero-bg: linear-gradient(120deg, #2a2112, #120f18 60%, #1d1430); }
+h2 { font-style: italic; }
+h2::before { letter-spacing: .5em; }
+h2::after { content: ""; display: block; width: 22mm; height: .6pt; background: var(--accent); margin-top: 4mm; }
+thead th { border-bottom: .6pt solid var(--accent); }
+.callout, .stats li, .cards li { border: .5pt solid #3a3242; }
+.cover h1 { font-style: italic; }
+.cover .rule { height: .8pt; width: 60mm; }

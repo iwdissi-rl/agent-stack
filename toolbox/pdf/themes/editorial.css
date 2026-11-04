@@ -1,0 +1,14 @@
+/* editorial — magazine feature: cream paper, Fraunces display, vermilion accent, big drop caps */
+:root { --paper: #f6f1e7; --ink: #211d1a; --heading: #14110f; --muted: #8a7f73; --accent: #d1431a; --accent-2: #1f5c99; --accent-soft: #e9b9a6;
+  --hairline: #d8cfc1; --panel: #ece4d6; --zebra: #efe8db; --ok: #2f7d4f; --warn: #c27c0e; --bad: #b3261e;
+  --font-display: "Fraunces", "Playfair Display", "Noto Serif CJK SC", serif; --font-display-alt: "Fraunces", serif;
+  --font-body: "Fraunces", "Noto Serif CJK SC", serif; --font-ui: "Inter", "Noto Sans CJK SC", sans-serif; --font-mono: "JetBrains Mono", monospace;
+  --body-size: 10.4pt; --align: justify; --h2-size: 27pt; --h2-weight: 800; --dropcap-size: 46pt; --radius: 0;
+  --cover-bg: #14110f; --cover-ink: #f6f1e7; --cover-sub: #d9cfc0; --cover-accent: #ff6a3d;
+  --cover-art: radial-gradient(circle at 85% 18%, #d1431a 0, #d1431a 23%, transparent 23.2%), radial-gradient(circle at 85% 18%, transparent 30%, #3a2a20 30.2%, #3a2a20 30.8%, transparent 31%), linear-gradient(160deg, #241c17 0%, #14110f 60%);
+  --cover-title-size: 58pt; --th-bg: #14110f; --th-ink: #f6f1e7;
+  --code-bg: #1d1916; --code-ink: #efe6d8; --code-inline-bg: #e7dccb; --code-inline-ink: #8f2d10; }
+h2 { border-top: 2.2pt solid var(--heading); padding-top: 4mm; }
+h2::before { color: var(--accent); }
+h3 { font-style: italic; font-weight: 600; }
+.cover h1 { font-style: italic; font-weight: 800; }

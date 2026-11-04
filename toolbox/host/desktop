@@ -1,0 +1,21 @@
+#!/bin/bash
+# desktop — mouse/keyboard on the owner's screen for X11 apps (Lunar, Minecraft, Java/Electron windows via Xwayland).
+#   desktop windows                 list X11 windows (id, geometry, title)
+#   desktop click X Y [button]      move + click (screen coordinates from screenshot(); default left button)
+#   desktop dblclick X Y
+#   desktop type "text"             type into the focused X11 window
+#   desktop key Return|Escape|ctrl+a|...
+#   desktop focus "<title regex>"   raise/focus a window by title
+# Native Wayland windows (kitty, Firefox) do NOT receive these events — by design, so nothing can type into a terminal.
+set -u
+cmd=${1:?usage}; shift
+case $cmd in
+  windows) n=0; for w in $(xdotool search --onlyvisible --name '.' 2>/dev/null); do n=$((n+1)); printf "%s  %s  %s\n" "$w" "$(xdotool getwindowgeometry $w | sed -n 's/.*Position: \([^ ]*\).*/\1/p;s/.*Geometry: //p' | paste -sd' ')" "$(xdotool getwindowname $w)"; done
+           [ $n = 0 ] && echo "no X11 (Xwayland) windows open — native Wayland windows are invisible to xdotool by design; launch the app first (e.g. host_run lunar), then screenshot()";;
+  click) xdotool mousemove --sync "$1" "$2" click "${3:-1}"; echo clicked $1,$2;;
+  dblclick) xdotool mousemove --sync "$1" "$2" click --repeat 2 1; echo dblclicked;;
+  type) xdotool type --delay 30 -- "$1"; echo typed;;
+  key) xdotool key -- "$1"; echo key $1;;
+  focus) w=$(xdotool search --onlyvisible --name "$1" | head -1) && xdotool windowactivate --sync $w && echo focused $w;;
+  *) echo "unknown $cmd"; exit 2;;
+esac

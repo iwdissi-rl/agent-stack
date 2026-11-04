@@ -1,0 +1,46 @@
+# SearXNG for the local Hermes agent. Inherits upstream defaults, overrides below.
+use_default_settings: true
+general:
+  instance_name: "local-agent-search"
+server:
+  secret_key: "c4dbc09715a12e8ba7deee8e3c1419a0d5ee13e987df414cbbe5004baf3821ae"
+  limiter: false          # single local client; the bot limiter would block Hermes
+  image_proxy: false
+  method: "GET"
+search:
+  safe_search: 0
+  formats: [html, json]   # Hermes needs format=json
+  suspended_times:        # seconds an engine stays suspended after each error class (upstream: 1 h / 24 h / 15 days)
+    SearxEngineAccessDenied: 600
+    SearxEngineCaptcha: 900
+    SearxEngineTooManyRequests: 300
+    cf_SearxEngineCaptcha: 1800
+    cf_SearxEngineAccessDenied: 1800
+    recaptcha_SearxEngineCaptcha: 1800
+outgoing:
+  request_timeout: 6.0
+  max_request_timeout: 12.0
+  proxies:                # upstream engines are only reachable via the Mihomo proxy on this box
+    all://:
+      - http://127.0.0.1:7897
+  # 2026-10-23: the three default web engines (brave, duckduckgo, google cse) all got blocked at once through the shared
+  # proxy IP (captcha / too many requests) -> zero results. Upstream suspends a captcha'd engine for 24 h by default;
+  # recover much faster, and spread queries over more engines (below) so one blocked engine never empties the results.
+engines:                  # general-web engines verified through the proxy on 2026-10-23 (relevance-checked on a 'llama.cpp github' query).
+                          # Off: google/qwant/fastbot/yep/fireball/searchmysite (access denied), startpage/mojeek/zapmeta/ayo/vuhuv/crowdview/
+                          # encyclosearch (empty), seznam (timeout), resulthunter/tusksearch/gabanza (errors), presearch (does not load),
+                          # reloado (irrelevant). 'duckduckgo web' (HTML endpoint) answers while plain 'duckduckgo' (lite) is CAPTCHA'd.
+  - name: duckduckgo web
+    disabled: false
+  - name: yandex
+    disabled: false
+  - name: privacywall
+    disabled: false
+  - name: naver
+    disabled: false
+  - name: bing
+    disabled: false
+  - name: yahoo
+    disabled: false
+  - name: mwmbl
+    disabled: false

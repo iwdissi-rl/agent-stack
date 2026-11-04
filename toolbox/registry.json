@@ -1,0 +1,404 @@
+{
+ "tools": {
+  "apktool": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "APK decode/rebuild",
+   "run": "java -jar /mnt/data/la-toolbox/opt/apktool/apktool.jar d app.apk",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "binwalk": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge binwalk (main env)",
+   "run": "binwalk",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "blender-gpu": {
+   "by": "agent",
+   "created": "2026-11-03 23:57",
+   "desc": "Official Blender 5.0.1 (blender.org build): CUDA/OptiX Cycles on the RTX 4090 D + OIDN/OptiX denoising; Debian /usr/bin/blender is CPU-only",
+   "run": "/mnt/data/la-toolbox/opt/blender/blender -b file.blend --python script.py -- args",
+   "updated": "2026-11-03 23:57",
+   "where": "both"
+  },
+  "cmake": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge cmake (main env)",
+   "run": "cmake",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "desktop": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "xdotool mouse/keyboard for X11 windows on the owner's screen (click X Y, type, key, windows, focus)",
+   "run": "host_run(tool='desktop', args=['click','960','540'])",
+   "updated": "2026-11-03 14:17",
+   "where": "host"
+  },
+  "duckdb-cli": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge duckdb-cli (main env) -> `duckdb`",
+   "run": "duckdb",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "exiftool": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge exiftool (main env)",
+   "run": "exiftool",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "fd-find": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge fd-find (main env) -> `fd`",
+   "run": "fd",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "ffmpeg": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge ffmpeg (main env)",
+   "run": "ffmpeg",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "ghidra": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "Ghidra 12.2 reverse engineering (headless: analyzeHeadless)",
+   "run": "/mnt/data/la-toolbox/opt/ghidra_12.2_PUBLIC/support/analyzeHeadless",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "ghostscript": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge ghostscript (main env)",
+   "run": "ghostscript",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "git-lfs": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge git-lfs (main env)",
+   "run": "git-lfs",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "go": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge go (main env)",
+   "run": "go",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "gradle": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge gradle (main env)",
+   "run": "gradle",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "graphviz": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge graphviz (main env) -> `dot`",
+   "run": "dot",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "hyperfine": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge hyperfine (main env)",
+   "run": "hyperfine",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "imagemagick": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge imagemagick (main env) -> `magick`",
+   "run": "magick",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "jadx": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "Android/Java decompiler (jar/apk/dex -> java)",
+   "run": "/mnt/data/la-toolbox/opt/jadx/bin/jadx -d out app.apk",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "jq": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge jq (main env)",
+   "run": "jq",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "librsvg": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge librsvg (main env) -> `rsvg-convert`",
+   "run": "rsvg-convert",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "lunar": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "Open Lunar Client on the real desktop with optional test mods (removed afterwards); drive with screenshot()+desktop",
+   "run": "host_run(tool='lunar', args=['--mods','/path/x.jar','--minutes','15'], wait_s=5)",
+   "updated": "2026-11-03 14:17",
+   "where": "host"
+  },
+  "maven": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge maven (main env) -> `mvn`",
+   "run": "mvn",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "mc-gpu": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "mc-test on the real desktop GPU (fast, visible)",
+   "run": "host_run(tool='mc-gpu', args=['fabric:1.21.5','/path/mod.jar'], wait_s=300)",
+   "updated": "2026-11-03 14:17",
+   "where": "host"
+  },
+  "mc-test": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "Launch MC client (vanilla/fabric/forge/neoforge/quilt) with mods, wait for title screen/crash, screenshot, report",
+   "run": "mc-test fabric:1.21.5 mod.jar",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "mermaid-cli": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge mermaid-cli (main env) -> `mmdc`",
+   "run": "mmdc",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "ninja": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge ninja (main env)",
+   "run": "ninja",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "nodejs": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge nodejs (main env)",
+   "run": "nodejs",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "openjdk": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "JDK 25 (`java` on PATH) + JDK 17/21: eval \"$(tb java 21 --export)\"",
+   "run": "java",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "pandoc": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge pandoc (main env)",
+   "run": "pandoc",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "playwright-chromium": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "Chromium headless shell for Playwright (tbpy)",
+   "run": "PLAYWRIGHT_BROWSERS_PATH=/mnt/data/la-toolbox/opt/playwright tbpy script.py",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "pnpm": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge pnpm (main env)",
+   "run": "pnpm",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "poppler": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge poppler (main env) -> `pdftotext`",
+   "run": "pdftotext",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "prettypdf": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "Markdown/HTML -> extravagant designed PDF (themes editorial/luxe/tech/academic/auto) + page previews",
+   "run": "prettypdf doc.md",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "py-rich": {
+   "by": "agent",
+   "created": "2026-11-03 15:58",
+   "desc": "Python package rich in the shared venv",
+   "run": "tbpy -c 'import ...'",
+   "updated": "2026-11-03 15:58",
+   "where": "both"
+  },
+  "py-tabulate": {
+   "by": "agent",
+   "created": "2026-11-03 15:55",
+   "desc": "Python package tabulate in the shared venv",
+   "run": "tbpy -c 'import ...'",
+   "updated": "2026-11-03 15:55",
+   "where": "both"
+  },
+  "qpdf": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge qpdf (main env)",
+   "run": "qpdf",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "ripgrep": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge ripgrep (main env) -> `rg`",
+   "run": "rg",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "rust": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge rust (main env) -> `cargo`",
+   "run": "cargo",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "selftest": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "prints what the host runner confinement can see (debugging host_run)",
+   "run": "host_run(tool='selftest')",
+   "updated": "2026-11-03 15:23",
+   "where": "host"
+  },
+  "shellcheck": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge shellcheck (main env)",
+   "run": "shellcheck",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "sox": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge sox (main env)",
+   "run": "sox",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "sqlite": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge sqlite (main env) -> `sqlite3`",
+   "run": "sqlite3",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "tbpy": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "shared Python 3.12 venv: numpy pandas polars scipy sklearn matplotlib plotly duckdb jupyterlab playwright httpx selectolax trafilatura pypdf pdfplumber portable",
+   "run": "tbpy script.py",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "tectonic": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge tectonic (main env)",
+   "run": "tectonic",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "tree": {
+   "by": "agent",
+   "created": "2026-11-03 15:55",
+   "desc": "directory tree listing",
+   "run": "tree -L 2",
+   "updated": "2026-11-03 15:55",
+   "where": "both"
+  },
+  "typst": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge typst (main env)",
+   "run": "typst",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "uv": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge uv (main env)",
+   "run": "uv",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "weasyprint": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge weasyprint (main env)",
+   "run": "weasyprint",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "yq": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge yq (main env)",
+   "run": "yq",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  },
+  "yt-dlp": {
+   "by": "agent",
+   "created": "2026-11-03 14:17",
+   "desc": "conda-forge yt-dlp (main env)",
+   "run": "yt-dlp",
+   "updated": "2026-11-03 14:17",
+   "where": "both"
+  }
+ }
+}

@@ -1,0 +1,20 @@
+diff --git a/hermes_cli/stream_json.py b/hermes_cli/stream_json.py
+index 6c3b19bf75..a29a43a003 100644
+--- a/hermes_cli/stream_json.py
++++ b/hermes_cli/stream_json.py
+@@ -48,8 +48,15 @@ class StreamJsonEmitter:
+         construction, before credentials/agent init, so a failed start still yields init + result)."""
+         agent.stream_delta_callback = self.on_text_delta
+         agent.tool_progress_callback = self.on_tool_progress
++        agent.reasoning_callback = self.on_reasoning_delta  # local-agent patch: thinking passthrough
+         return self
+ 
++    def on_reasoning_delta(self, text: str | None) -> None:
++        """local-agent patch: the model's reasoning as ``thinking`` deltas (the model writes it either way; the
++        protocol used to drop it). Consumers that only know text/tool events skip the unknown type."""
++        if text:
++            self._emit({"type": "thinking", "text": str(text)})
++
+     def on_text_delta(self, text: str | None) -> None:
+         # Only None/"" (the turn-end sentinel) is dropped: whitespace deltas are part of the text, and
+         # a consumer concatenating ``text`` events must reproduce the answer byte for byte.

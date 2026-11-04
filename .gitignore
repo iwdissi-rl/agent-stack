@@ -1,0 +1,51 @@
+# runtime / private state (never committed)
+**/models/
+**/hf-home/
+**/hermes-home/
+**/hermes-home-test/
+**/workspace/
+**/documents/
+**/claude-runs/
+**/logs/
+**/data/
+**/.uv-cache/
+local-agent/hud/data/
+local-agent/decide/cache/
+local-agent/evals/skillbench/bench-home/
+local-agent/evals/results/
+local-agent/evals/skillbench/results/
+# upstream clones / envs / binaries
+**/llama.cpp/
+**/hermes-agent/
+**/hermes-agent-next/
+**/.venv/
+**/venvs/
+**/envs/
+**/env/
+**/mamba/
+**/opt/
+**/cache/
+**/fonts/
+node_modules/
+__pycache__/
+*.pyc
+local-agent/bin/crane
+local-agent/bin/socat-root/
+toolbox/bin/micromamba
+# secrets
+.env
+*.env
+!local-agent/profiles/*.env
+!local-agent/profiles/archive/*.env
+*.token
+auth.json
+*.db
+*.db-wal
+*.db-shm
+*.pem
+*.key
+# backups
+*.bak
+*.bak-*
+*.orig
+!local-agent/services/crawl4ai-patch/egress_broker.py.orig

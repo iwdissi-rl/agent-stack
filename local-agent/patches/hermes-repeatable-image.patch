@@ -1,0 +1,41 @@
+diff --git a/hermes_cli/_parser.py b/hermes_cli/_parser.py
+index 624f955d2e..4cc46c1d71 100644
+--- a/hermes_cli/_parser.py
++++ b/hermes_cli/_parser.py
+@@ -244,7 +244,7 @@ def _build_chat_parser(subparsers) -> argparse.ArgumentParser:
+         "With -q/--query-file: answer the query and exit (legacy "
+         "single-query behavior) instead of seeding an interactive "
+         "session. Implied on non-TTY stdio and by -Q/--quiet."))
+-    add("--image", help="Optional local image path to attach to a single query")
++    add("--image", action="append", help="Local image path to attach to a single query (repeatable)")  # local-agent patch: repeatable
+     inherited(chat_parser, "-m", "--model", default=SUPPRESS,
+               help="Model to use (e.g., anthropic/claude-sonnet-4)")
+     add("-t", "--toolsets", default=SUPPRESS, help="Comma-separated toolsets to enable")
+diff --git a/hermes_cli/cli_terminal_input.py b/hermes_cli/cli_terminal_input.py
+index 604d848a5d..6e33fb1e53 100644
+--- a/hermes_cli/cli_terminal_input.py
++++ b/hermes_cli/cli_terminal_input.py
+@@ -579,7 +579,7 @@ def _status_bar_visible_from_display_config(display_config: object) -> bool:
+     return statusbar_config is not False
+ 
+ 
+-def _collect_query_images(query: str | None, image_arg: str | None = None) -> tuple[str, list[Path]]:
++def _collect_query_images(query: str | None, image_arg: str | list[str] | None = None) -> tuple[str, list[Path]]:
+     """Collect local image attachments for single-query CLI flows."""
+     from cli import _IMAGE_EXTENSIONS, _detect_file_drop, _resolve_attachment_path
+     message = query or ""
+@@ -591,10 +591,11 @@ def _collect_query_images(query: str | None, image_arg: str | None = None) -> tu
+             images.append(dropped["path"])
+             message = dropped["remainder"] or f"[User attached image: {dropped['path'].name}]"
+ 
+-    if image_arg:
+-        explicit_path = _resolve_attachment_path(image_arg)
++    # local-agent patch: --image is repeatable (list); a plain string still works
++    for one in ([image_arg] if isinstance(image_arg, str) else list(image_arg or [])):
++        explicit_path = _resolve_attachment_path(one)
+         if explicit_path is None:
+-            raise ValueError(f"Image file not found: {image_arg}")
++            raise ValueError(f"Image file not found: {one}")
+         if explicit_path.suffix.lower() not in _IMAGE_EXTENSIONS:
+             raise ValueError(f"Not a supported image file: {explicit_path}")
+         images.append(explicit_path)

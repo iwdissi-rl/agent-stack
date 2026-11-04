@@ -1,0 +1,40 @@
+# Local research services for the Hermes agent. Start: docker compose up -d
+# All ports bind to 127.0.0.1 only. searxng/crawl4ai use host networking so they
+# can reach the host's HTTP proxy at 127.0.0.1:7897.
+name: local-agent
+services:
+  searxng:
+    image: searxng/searxng:latest
+    network_mode: host
+    environment:
+      GRANIAN_HOST: 127.0.0.1
+      GRANIAN_PORT: "8888"
+    volumes:
+      - ./searxng/settings.yml:/etc/searxng/settings.yml:ro
+    restart: unless-stopped
+
+  crawl4ai:
+    image: unclecode/crawl4ai:latest
+    network_mode: host
+    shm_size: "2g"
+    volumes:
+      # Allows only 198.18.0.0/15 (Mihomo fake-IP DNS) past the SSRF guard; re-diff vs .orig after image upgrades
+      - ./crawl4ai-patch/egress_broker.py:/app/egress_broker.py:ro
+    environment:
+      HOST: 127.0.0.1
+      PORT: "11235"
+      HTTP_PROXY: http://127.0.0.1:7897
+      HTTPS_PROXY: http://127.0.0.1:7897
+      NO_PROXY: localhost,127.0.0.1
+      CRAWL4AI_API_TOKEN: ${CRAWL4AI_API_TOKEN}
+    restart: unless-stopped
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "127.0.0.1:6333:6333"
+      - "127.0.0.1:6334:6334"
+    volumes:
+      - ../data/qdrant:/qdrant/storage
+    restart: unless-stopped
+

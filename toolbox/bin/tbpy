@@ -1,0 +1,4 @@
+#!/bin/sh
+# The toolbox's shared Python 3.12 venv (numpy/pandas/polars/matplotlib/playwright/portablemc/... — `tb pip` adds more)
+printf '{"ts":%s,"tool":"tbpy","kind":"wrapper","args":"%s","where":"%s"}\n' "$(date +%s)" "$(printf '%s' "$1" | tr -d '"\\\n\r\t' | cut -c1-120)" "$([ -e /.dockerenv ] && echo sandbox || echo host)" >> /mnt/data/la-toolbox/logs/usage.jsonl 2>/dev/null
+exec /mnt/data/la-toolbox/venvs/py/bin/python "$@"

@@ -1,0 +1,4 @@
+#!/bin/bash
+# mc-gpu — the same as `mc-test` but on the real desktop + GPU (fast, real rendering, visible to the owner).
+#   mc-gpu <loader:version> [mods...] [--timeout 300] [--keep]
+exec /mnt/data/la-toolbox/bin/mc-test "$@"

@@ -1,0 +1,20 @@
+diff --git a/agent/agent_init.py b/agent/agent_init.py
+index 52eb03305c..3d088802e0 100644
+--- a/agent/agent_init.py
++++ b/agent/agent_init.py
+@@ -303,8 +303,14 @@ def _custom_provider_extra_body_for_agent(
+ 
+ 
+ def _merge_custom_provider_extra_body(agent, custom_providers: list[dict[str, Any]]) -> None:
++    provider = agent.provider
++    requested = str(getattr(agent, "requested_provider", "") or "").strip().lower()
++    if requested.startswith("custom:") and str(provider or "").strip().lower() == "custom":
++        # local-agent patch: several named entries share one base_url + model (the HUD's effort levels); match the
++        # requested entry by name, not the first entry on that URL (which sent local-fast's thinking-off to every level)
++        provider = requested
+     extra_body = _custom_provider_extra_body_for_agent(
+-        provider=agent.provider, model=agent.model, base_url=agent.base_url,
++        provider=provider, model=agent.model, base_url=agent.base_url,
+         custom_providers=custom_providers,
+     )
+     if not extra_body:

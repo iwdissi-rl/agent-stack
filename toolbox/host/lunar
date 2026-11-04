@@ -1,0 +1,30 @@
+#!/bin/bash
+# lunar — open Lunar Client on the owner's desktop (optionally with test mods) and keep it alive while you drive it.
+#   lunar [--mods <jar|dir>...] [--profile <dir under ~/.lunarclient/profiles, default 1.8>] [--minutes 15]
+# Blocks for --minutes (the host runner's sandbox ends when this script ends, which closes Lunar), so call it via
+# host_run(tool="lunar", args=[...], wait_s=5) and then use screenshot() + host_run(tool="desktop", ...) to click
+# "Launch", pick the version, etc. Mods you add are copied into the profile's mods dir and REMOVED again at the end
+# (the owner's own mods are never touched). Game logs: ~/.lunarclient/profiles/<profile>/logs/latest.log and
+# ~/.lunarclient/logs/launcher/. The owner's Lunar login is used as-is — never log out or change account settings.
+set -u
+PROFILE=1.8; MIN=15; MODS=()
+while [ $# -gt 0 ]; do case "$1" in --mods) shift; while [ $# -gt 0 ] && [[ $1 != --* ]]; do MODS+=("$1"); shift; done;;
+  --profile) PROFILE=$2; shift 2;; --minutes) MIN=$2; shift 2;; *) echo "unknown arg $1"; exit 2;; esac; done
+PDIR=$HOME/.lunarclient/profiles/$PROFILE; mkdir -p "$PDIR/mods"
+ADDED=()
+for m in "${MODS[@]}"; do for f in $( [ -d "$m" ] && ls "$m"/*.jar || echo "$m" ); do
+  b=la-test-$(basename "$f"); cp "$f" "$PDIR/mods/$b" && ADDED+=("$PDIR/mods/$b") && echo "added mod $b"; done; done
+cleanup(){ for a in "${ADDED[@]}"; do rm -f "$a"; done; echo "removed ${#ADDED[@]} test mods"; }
+trap cleanup EXIT
+export APPIMAGE_EXTRACT_AND_RUN=1 TMPDIR=/tmp
+echo "starting Lunar Client (profile $PROFILE) for $MIN min"
+"$HOME/Applications/LunarClient.AppImage" --no-sandbox > /tmp/lunar-launcher.log 2>&1 &
+L=$!
+END=$(( $(date +%s) + MIN*60 ))
+while [ $(date +%s) -lt $END ] && kill -0 $L 2>/dev/null; do
+  sleep 15
+  if pgrep -f "lunar.*\.jar|net.minecraft|genesis" >/dev/null 2>&1; then echo "[$(date +%T)] game JVM running"; fi
+  LOG=$PDIR/logs/latest.log; [ -f "$LOG" ] && grep -qE "Crash report|---- Minecraft Crash Report" "$LOG" && { echo "CRASH in $LOG"; tail -40 "$LOG"; break; }
+done
+echo "--- launcher log tail ---"; tail -20 /tmp/lunar-launcher.log
+[ -f "$PDIR/logs/latest.log" ] && { echo "--- game log tail ---"; tail -40 "$PDIR/logs/latest.log"; }

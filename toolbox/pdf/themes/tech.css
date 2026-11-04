@@ -1,0 +1,14 @@
+/* tech — bold product report: white, Space Grotesk/Sora display, indigo→pink gradient, stat tiles */
+:root { --paper: #ffffff; --ink: #1d2433; --heading: #0b1020; --muted: #7a8396; --accent: #5b4bff; --accent-2: #00a3ff; --accent-soft: #c9c3ff;
+  --hairline: #e4e7ef; --panel: #f4f5fb; --zebra: #f8f9fc; --card: #fbfbff; --ok: #12a46b; --warn: #e89b0c; --bad: #e5484d;
+  --font-display: "Space Grotesk", "Sora", "Noto Sans CJK SC", sans-serif; --font-display-alt: "Sora", sans-serif;
+  --font-body: "Inter", "Noto Sans CJK SC", sans-serif; --font-ui: "Inter", "Noto Sans CJK SC", sans-serif; --font-mono: "JetBrains Mono", monospace;
+  --body-size: 9.6pt; --h2-size: 25pt; --h2-weight: 700; --dropcap-size: 0; --radius: 3mm; --subtitle-style: normal;
+  --cover-bg: #0b0f24; --cover-ink: #ffffff; --cover-sub: #c5cbff; --cover-accent: #8ef0ff;
+  --cover-art: radial-gradient(circle at 80% 20%, #ff4fd8 0, transparent 40%), radial-gradient(circle at 15% 85%, #00c2ff 0, transparent 45%), linear-gradient(135deg, #2a1bff 0%, #0b0f24 70%);
+  --cover-title-size: 54pt; --th-bg: #0b1020; --th-ink: #ffffff; --tile-bg: linear-gradient(160deg, #5b4bff, #a43bff); --tile-ink: #e9e7ff; --tile-num: #ffffff;
+  --code-bg: #0b1020; --code-ink: #dbe2ff; --code-inline-bg: #eeecff; --code-inline-ink: #4a3bdb; --hero-bg: linear-gradient(120deg, #5b4bff, #c13bff 70%, #ff4fa3); }
+h2::before { display: inline-block; background: linear-gradient(90deg, #5b4bff, #c13bff); color: #fff; padding: 1mm 2.4mm; border-radius: 1.2mm; letter-spacing: .2em; margin: 0 3mm 1.5mm 0; }
+.stats li { border-top: 0; }
+blockquote { border-left: 0; padding: 5mm 7mm; background: var(--panel); border-radius: var(--radius); }
+blockquote p { font-family: var(--font-display); font-style: normal; font-weight: 500; }

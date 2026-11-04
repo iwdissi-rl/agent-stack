@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# skillport — port skills from Claude Code / Codex / Cursor / OpenClaw / ChatGPT / skills.sh / GitHub into Hermes.
+ROOT=/mnt/data/local-agent
+export HERMES_HOME=${HERMES_HOME:-$ROOT/hermes-home}
+exec "$ROOT/hud/.venv/bin/python" "$ROOT/scripts/skillport.py" "$@"

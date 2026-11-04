@@ -1,0 +1,48 @@
+#!/bin/bash
+# mc-test — launch a Minecraft client (vanilla/fabric/forge/neoforge/quilt) with a set of mods, wait until it reaches
+# the title screen or crashes, screenshot it, and report. Works in the sandbox (Xvfb + software GL) and on the host
+# (real GPU, via host_run tool mc-gpu). Game files cache in /mnt/data/la-toolbox/opt/minecraft (shared, persistent).
+#
+#   mc-test <loader:version> [mod.jar|mods-dir ...] [--timeout 300] [--keep] [--world <name in run dir>]
+#   e.g. mc-test fabric:1.21.5 /workspace/mymod/build/libs/mymod-1.0.jar
+#        mc-test neoforge:1.21.1 ./mods/        forge:1.20.1   vanilla 26.3 = mc-test 26.3
+# Exit 0 = reached the title screen with every mod loaded; 1 = crash/timeout (see the report).
+set -u
+TB=/mnt/data/la-toolbox; MAIN=$TB/opt/minecraft
+VER=${1:?usage: mc-test <loader:version> [mods...]}; shift
+TIMEOUT=300; KEEP=0; MODS=(); WORLD=""
+while [ $# -gt 0 ]; do case "$1" in --timeout) TIMEOUT=$2; shift 2;; --keep) KEEP=1; shift;; --world) WORLD=$2; shift 2;; *) MODS+=("$1"); shift;; esac; done
+printf '{"ts":%s,"tool":"mc-test","kind":"wrapper","args":"%s","where":"%s"}\n' "$(date +%s)" "$(printf '%s' "$VER ${MODS[*]:-}" | tr -d '"\\\n\r\t' | cut -c1-120)" "$([ -e /.dockerenv ] && echo sandbox || echo host)" >> /mnt/data/la-toolbox/logs/usage.jsonl 2>/dev/null
+RUN=$(mktemp -d /tmp/mc-test.XXXX); WORK=$RUN/game; mkdir -p $WORK/mods
+for m in "${MODS[@]}"; do if [ -d "$m" ]; then cp "$m"/*.jar $WORK/mods/ 2>/dev/null; else cp "$m" $WORK/mods/; fi; done
+# Java: MC >= 1.20.5 needs 21, 26.x needs 25, older needs 17 (1.8-1.16 also run on 17 with most loaders)
+mcv=${VER#*:}; JV=21
+case "$mcv" in 26.*|1.22*) JV=25;; 1.1[0-9]*|1.20|1.20.[0-4]|1.8*|1.7*) JV=17;; esac
+JAVA=$(tb java $JV)/bin/java
+HEADLESS=0
+if [ -z "${DISPLAY:-}" ] || ! xdpyinfo >/dev/null 2>&1; then
+  HEADLESS=1; export DISPLAY=:77; Xvfb :77 -screen 0 1280x720x24 >/dev/null 2>&1 & XPID=$!; sleep 2
+  export LIBGL_ALWAYS_SOFTWARE=1 GALLIUM_DRIVER=llvmpipe MESA_GL_VERSION_OVERRIDE=4.6 MESA_GLSL_VERSION_OVERRIDE=460
+fi
+echo "[mc-test] $VER  mods=${#MODS[@]}  java=$JV  headless=$HEADLESS  run=$RUN"
+LOG=$RUN/client.log
+/mnt/data/la-toolbox/venvs/py/bin/portablemc start --main-dir "$MAIN" --mc-dir "$WORK" --jvm "$JAVA" \
+  --jvm-arg=-Xmx3G -u la_test ${WORLD:+--join-world "$WORLD"} "$VER" > "$LOG" 2>&1 &
+PID=$!
+STATUS=timeout; T0=$(date +%s)
+while [ $(( $(date +%s) - T0 )) -lt $TIMEOUT ]; do
+  sleep 3
+  if grep -qE "Sound engine started|Created: .*textures/atlas/blocks|Narrator library|Reloading ResourceManager" "$LOG" 2>/dev/null; then sleep 12; STATUS=title; break; fi
+  if grep -qE "Crash report saved|---- Minecraft Crash Report|Exception in thread \"main\"|Incompatible mods found|Mod resolution failed|ModLoadingException|Missing or unsupported mandatory dependencies" "$LOG" 2>/dev/null; then STATUS=crash; sleep 2; break; fi
+  kill -0 $PID 2>/dev/null || { STATUS=exited; break; }
+done
+SD=/workspace/outbox/screens; [ -d /workspace ] || SD=/mnt/data/local-agent/workspace/outbox/screens   # host: same dir
+mkdir -p $SD; SHOT=$SD/mc-test-$(date +%H%M%S).png
+import -window root "$SHOT" 2>/dev/null || grim "$SHOT" 2>/dev/null || SHOT="(no screenshot)"
+[ $KEEP = 1 ] || { pkill -P $PID 2>/dev/null; kill $PID 2>/dev/null; }
+[ $HEADLESS = 1 ] && [ $KEEP = 0 ] && kill $XPID 2>/dev/null
+echo "[mc-test] status=$STATUS after $(( $(date +%s) - T0 ))s  screenshot=$SHOT  log=$LOG"
+echo "--- loaded mods (loader log) ---"; grep -E "Loading [0-9]+ mods|^\s+- [a-z0-9_-]+ [0-9]|Found mod file|mod list" "$LOG" | head -40
+echo "--- problems ---"; grep -nE "ERROR|Exception|FATAL|Caused by|crash" "$LOG" | grep -v "Failed to load native" | head -40
+CR=$(ls -t $WORK/crash-reports/*.txt 2>/dev/null | head -1); [ -n "$CR" ] && { echo "--- crash report $CR ---"; head -60 "$CR"; }
+[ $STATUS = title ]

@@ -1,0 +1,10 @@
+#!/bin/bash
+# Prove the host-runner confinement: what this script can and cannot see.
+echo "pid=$$ (own pid ns => small number)"; echo "display=$DISPLAY wayland=$WAYLAND_DISPLAY"
+printf 'keys.env bytes: '; wc -c < "${KEYS_ENV:-/mnt/data/keys.env}"
+printf '~/.claude entries: '; ls -A ~/.claude | wc -l
+printf 'docker sock: '; [ -S /run/docker.sock ] && echo SOCKET || echo masked
+printf 'home writable? '; touch ~/.la_probe 2>/dev/null && { echo YES; rm ~/.la_probe; } || echo no
+printf 'mnt/data writable? '; touch /mnt/data/la-toolbox/cache/.probe && { echo yes; rm /mnt/data/la-toolbox/cache/.probe; }
+printf 'xwayland ok? '; command -v xdpyinfo >/dev/null && xdpyinfo >/dev/null 2>&1 && echo yes || ls /tmp/.X11-unix
+printf 'ps sees: '; ps -e --no-headers | wc -l

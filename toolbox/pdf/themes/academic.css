@@ -1,0 +1,15 @@
+/* academic — elegant paper: Instrument/Playfair headings, Fraunces text, navy + burgundy, numbered sections */
+:root { --paper: #fdfcf9; --ink: #222326; --heading: #13233f; --muted: #7b7f88; --accent: #8c1c32; --accent-2: #13233f; --accent-soft: #dcb6be;
+  --hairline: #dcdde2; --panel: #f3f1ea; --zebra: #f7f6f1; --ok: #2f6f4f; --warn: #a66a00; --bad: #9b1c1c;
+  --font-display: "Playfair Display", "Instrument Serif", "Noto Serif CJK SC", serif; --font-display-alt: "Instrument Serif", serif;
+  --font-body: "Fraunces", "Noto Serif CJK SC", serif; --font-ui: "Inter", "Noto Sans CJK SC", sans-serif; --font-mono: "JetBrains Mono", monospace;
+  --body-size: 10.2pt; --align: justify; --h2-size: 19pt; --h2-weight: 700; --dropcap-size: 36pt; --radius: 0;
+  --cover-bg: #fdfcf9; --cover-ink: #13233f; --cover-sub: #4a5468; --cover-accent: #8c1c32;
+  --cover-art: linear-gradient(90deg, #13233f 0, #13233f 9mm, #8c1c32 9mm, #8c1c32 10.2mm, transparent 10.2mm), radial-gradient(circle at 100% 100%, #f1ece0 0, transparent 60%), #fdfcf9;
+  --cover-title-size: 40pt; --cover-title-weight: 700; --th-bg: transparent; --th-ink: #13233f;
+  --code-bg: #f3f1ea; --code-ink: #222326; --code-inline-bg: #f0ece2; --code-inline-ink: #8c1c32; }
+h2::before { display: inline; content: counter(sec) ".  "; font: 700 19pt var(--font-display); letter-spacing: 0; color: var(--accent); }
+thead th { border-top: 1.2pt solid var(--heading); border-bottom: .6pt solid var(--heading); }
+tbody tr:last-child td { border-bottom: 1.2pt solid var(--heading); }
+.cover .inner { left: 26mm; bottom: auto; top: 70mm; }
+.cover h1 { font-weight: 700; }

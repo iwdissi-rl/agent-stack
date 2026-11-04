@@ -1,0 +1,5 @@
+#!/bin/sh
+# Markdown/HTML -> extravagant PDF (themes editorial|luxe|tech|academic|auto). `prettypdf --help`. Skill: pretty-pdf.
+export FONTCONFIG_FILE=/mnt/data/la-toolbox/pdf/fonts.conf PATH="/mnt/data/la-toolbox/env/bin:$PATH"
+printf '{"ts":%s,"tool":"prettypdf","kind":"wrapper","args":"%s","where":"%s"}\n' "$(date +%s)" "$(printf '%s' "$1" | tr -d '"\\\n\r\t' | cut -c1-120)" "$([ -e /.dockerenv ] && echo sandbox || echo host)" >> /mnt/data/la-toolbox/logs/usage.jsonl 2>/dev/null
+exec /mnt/data/la-toolbox/env/bin/python /mnt/data/la-toolbox/pdf/prettypdf.py "$@"

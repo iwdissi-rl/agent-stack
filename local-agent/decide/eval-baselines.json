@@ -1,0 +1,1369 @@
+{
+  "embed": {
+    "accuracy": 0.729,
+    "hit@load": 0.732,
+    "clean_none": 0.714,
+    "wrong_loads": 8,
+    "ms_median": 65,
+    "ms_p90": 69,
+    "errors": 0,
+    "rows": [
+      {
+        "prompt": "Build a landing page for my solar bike light startup, three pricing tiers and an FAQ.",
+        "ok": [
+          "landing-page-design",
+          "frontend-design",
+          "design-taste-frontend",
+          "impeccable",
+          "claude-design",
+          "scrollcraft"
+        ],
+        "got": [
+          "landing-page-design"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 70,
+        "err": ""
+      },
+      {
+        "prompt": "Make the dashboard UI in app/components look less generic, it feels like a bootstrap template.",
+        "ok": [
+          "frontend-design",
+          "design-taste-frontend",
+          "impeccable",
+          "emil-design-eng"
+        ],
+        "got": [
+          "frontend-design"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 66,
+        "err": ""
+      },
+      {
+        "prompt": "Audit my site's HTML for accessibility and UX problems and list them by file and line.",
+        "ok": [
+          "web-design-guidelines",
+          "impeccable",
+          "dogfood"
+        ],
+        "got": [
+          "improve-codebase-architecture"
+        ],
+        "hit": false,
+        "wrong": [
+          "improve-codebase-architecture"
+        ],
+        "ms": 65,
+        "err": ""
+      },
+      {
+        "prompt": "Our Next.js app re-renders the whole product list on every keystroke in the search box. Speed it up.",
+        "ok": [
+          "vercel-react-best-practices",
+          "vercel-composition-patterns"
+        ],
+        "got": [
+          "vercel-react-best-practices"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 68,
+        "err": ""
+      },
+      {
+        "prompt": "Turn this static pricing card into a short looping animation I can post as a video.",
+        "ok": [
+          "design-to-motion",
+          "hyperframes",
+          "remotion-best-practices"
+        ],
+        "got": [
+          "design-to-motion"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 65,
+        "err": ""
+      },
+      {
+        "prompt": "Make a scroll-driven product story page where the phone rotates as you scroll.",
+        "ok": [
+          "scrollcraft",
+          "landing-page-design",
+          "frontend-design"
+        ],
+        "got": [
+          "scrollcraft"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 62,
+        "err": ""
+      },
+      {
+        "prompt": "The nightly billing job double-charges some customers but only in production. Find out why.",
+        "ok": [
+          "diagnosing-bugs",
+          "systematic-debugging"
+        ],
+        "got": [],
+        "hit": false,
+        "wrong": [],
+        "ms": 64,
+        "err": ""
+      },
+      {
+        "prompt": "Add a CSV export feature to the reports module, test-first please.",
+        "ok": [
+          "tdd",
+          "test-driven-development"
+        ],
+        "got": [
+          "xlsx"
+        ],
+        "hit": false,
+        "wrong": [
+          "xlsx"
+        ],
+        "ms": 66,
+        "err": ""
+      },
+      {
+        "prompt": "Review the changes in my last commit before I push to main.",
+        "ok": [
+          "code-review",
+          "requesting-code-review",
+          "caveman-review"
+        ],
+        "got": [
+          "code-review"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 66,
+        "err": ""
+      },
+      {
+        "prompt": "Rename every call of getUser( to fetchUser( across the TypeScript codebase without touching strings or comments.",
+        "ok": [
+          "ast-grep"
+        ],
+        "got": [],
+        "hit": false,
+        "wrong": [],
+        "ms": 66,
+        "err": ""
+      },
+      {
+        "prompt": "Our REST endpoint /v2/orders returns 401 even with a valid token. Help me debug it.",
+        "ok": [
+          "rest-graphql-debug",
+          "diagnosing-bugs"
+        ],
+        "got": [
+          "rest-graphql-debug"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 66,
+        "err": ""
+      },
+      {
+        "prompt": "Write an MCP server that exposes our Postgres read replica as tools for an agent.",
+        "ok": [
+          "mcp-builder"
+        ],
+        "got": [
+          "mcp-builder"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 65,
+        "err": ""
+      },
+      {
+        "prompt": "Click through the signup flow on localhost:3000 and tell me if the confirmation email step breaks.",
+        "ok": [
+          "webapp-testing",
+          "agent-browser",
+          "dogfood"
+        ],
+        "got": [
+          "webapp-testing"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 66,
+        "err": ""
+      },
+      {
+        "prompt": "Fill in the vendor form on this website and download the PDF it generates.",
+        "ok": [
+          "agent-browser",
+          "webapp-testing"
+        ],
+        "got": [
+          "pdf"
+        ],
+        "hit": false,
+        "wrong": [
+          "pdf"
+        ],
+        "ms": 62,
+        "err": ""
+      },
+      {
+        "prompt": "This Node service leaks memory over a few hours. Attach a debugger and find what holds the references.",
+        "ok": [
+          "node-inspect-debugger",
+          "diagnosing-bugs",
+          "systematic-debugging"
+        ],
+        "got": [],
+        "hit": false,
+        "wrong": [],
+        "ms": 65,
+        "err": ""
+      },
+      {
+        "prompt": "Step through this Python script in a debugger, it crashes somewhere in parse_config.",
+        "ok": [
+          "python-debugpy",
+          "diagnosing-bugs",
+          "systematic-debugging"
+        ],
+        "got": [],
+        "hit": false,
+        "wrong": [],
+        "ms": 63,
+        "err": ""
+      },
+      {
+        "prompt": "Generate developer docs with architecture diagrams for this repository.",
+        "ok": [
+          "code-wiki",
+          "architecture-diagram",
+          "codebase-inspection"
+        ],
+        "got": [
+          "code-wiki"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 61,
+        "err": ""
+      },
+      {
+        "prompt": "Our modules are tangled; suggest where to deepen interfaces and draw the module boundaries.",
+        "ok": [
+          "improve-codebase-architecture",
+          "codebase-design"
+        ],
+        "got": [
+          "codebase-design"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 67,
+        "err": ""
+      },
+      {
+        "prompt": "Set up pre-commit hooks so prettier and the type checker run before every commit.",
+        "ok": [
+          "setup-pre-commit"
+        ],
+        "got": [
+          "setup-pre-commit"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 64,
+        "err": ""
+      },
+      {
+        "prompt": "Write a commit message for the staged changes.",
+        "ok": [
+          "caveman-commit"
+        ],
+        "got": [
+          "caveman-commit"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 61,
+        "err": ""
+      },
+      {
+        "prompt": "Optimise these slow Postgres queries and fix the missing indexes on the orders table.",
+        "ok": [
+          "supabase-postgres-best-practices"
+        ],
+        "got": [],
+        "hit": false,
+        "wrong": [],
+        "ms": 64,
+        "err": ""
+      },
+      {
+        "prompt": "Write the Prisma query for users with more than 3 orders in the last month.",
+        "ok": [
+          "prisma-client-api"
+        ],
+        "got": [
+          "prisma-client-api"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 64,
+        "err": ""
+      },
+      {
+        "prompt": "Clean up and simplify the code I changed today.",
+        "ok": [
+          "simplify-code"
+        ],
+        "got": [
+          "simplify-code"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 62,
+        "err": ""
+      },
+      {
+        "prompt": "Here is a stripped ELF crackme, recover the serial check algorithm.",
+        "ok": [
+          "reverse-engineering",
+          "reverse-engineer"
+        ],
+        "got": [
+          "reverse-engineering"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 65,
+        "err": ""
+      },
+      {
+        "prompt": "Disassemble this firmware update and figure out what changed between v1.2 and v1.3.",
+        "ok": [
+          "reverse-engineering",
+          "reverse-engineer"
+        ],
+        "got": [
+          "reverse-engineering"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 66,
+        "err": ""
+      },
+      {
+        "prompt": "We have written permission to pentest staging.example.com; do recon and test the login for injection.",
+        "ok": [
+          "web-pentest"
+        ],
+        "got": [
+          "web-pentest"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 64,
+        "err": ""
+      },
+      {
+        "prompt": "A dependency we use got a suspicious new release on GitHub; investigate whether it was compromised.",
+        "ok": [
+          "oss-forensics"
+        ],
+        "got": [
+          "repo-intake-and-plan"
+        ],
+        "hit": false,
+        "wrong": [
+          "repo-intake-and-plan"
+        ],
+        "ms": 64,
+        "err": ""
+      },
+      {
+        "prompt": "List the subdomains and certificate history for example.org.",
+        "ok": [
+          "domain-intel"
+        ],
+        "got": [
+          "domain-intel"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 65,
+        "err": ""
+      },
+      {
+        "prompt": "Convert this Word contract to PDF and extract every deadline and obligation into a table.",
+        "ok": [
+          "document-to-action-items",
+          "docx",
+          "pdf"
+        ],
+        "got": [
+          "document-to-action-items"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 64,
+        "err": ""
+      },
+      {
+        "prompt": "Build a quarterly sales workbook with formulas and a chart from this CSV.",
+        "ok": [
+          "xlsx"
+        ],
+        "got": [
+          "xlsx"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 63,
+        "err": ""
+      },
+      {
+        "prompt": "Make a 10-slide deck summarising our Q3 results.",
+        "ok": [
+          "powerpoint"
+        ],
+        "got": [
+          "teams-meeting-pipeline"
+        ],
+        "hit": false,
+        "wrong": [
+          "teams-meeting-pipeline"
+        ],
+        "ms": 63,
+        "err": ""
+      },
+      {
+        "prompt": "Find recent arXiv papers on speculative decoding and summarise the main ideas.",
+        "ok": [
+          "arxiv",
+          "research",
+          "deep-research"
+        ],
+        "got": [
+          "arxiv"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 65,
+        "err": ""
+      },
+      {
+        "prompt": "Research what the evidence says about four-day work weeks and cite sources.",
+        "ok": [
+          "deep-research",
+          "research",
+          "grounded-citations"
+        ],
+        "got": [
+          "deep-research"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 64,
+        "err": ""
+      },
+      {
+        "prompt": "Summarise this YouTube video into a blog post.",
+        "ok": [
+          "youtube-content"
+        ],
+        "got": [
+          "youtube-content"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 60,
+        "err": ""
+      },
+      {
+        "prompt": "Reproduce the results of the paper in this repo: set up the environment and run the main experiment.",
+        "ok": [
+          "repo-intake-and-plan",
+          "env-and-assets-bootstrap",
+          "minimal-run-and-audit"
+        ],
+        "got": [
+          "minimal-run-and-audit"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 67,
+        "err": ""
+      },
+      {
+        "prompt": "Turn my meeting notes into decisions, owners and tickets.",
+        "ok": [
+          "meeting-action-items",
+          "to-tickets"
+        ],
+        "got": [
+          "meeting-action-items"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 61,
+        "err": ""
+      },
+      {
+        "prompt": "I want to rebuild our auth system. Grill me on the plan before we write any code.",
+        "ok": [
+          "grill-me",
+          "grilling",
+          "grill-with-docs"
+        ],
+        "got": [
+          "grill-me"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 64,
+        "err": ""
+      },
+      {
+        "prompt": "Break this feature spec into small implementable tickets.",
+        "ok": [
+          "to-tickets",
+          "to-spec"
+        ],
+        "got": [
+          "implement"
+        ],
+        "hit": false,
+        "wrong": [
+          "implement"
+        ],
+        "ms": 89,
+        "err": ""
+      },
+      {
+        "prompt": "Rewrite this paragraph so it doesn't sound like AI wrote it.",
+        "ok": [
+          "humanizer"
+        ],
+        "got": [
+          "humanizer"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 69,
+        "err": ""
+      },
+      {
+        "prompt": "Draw a hand-drawn style sequence diagram of our OAuth flow.",
+        "ok": [
+          "excalidraw",
+          "architecture-diagram"
+        ],
+        "got": [
+          "excalidraw"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 72,
+        "err": ""
+      },
+      {
+        "prompt": "Run and clean up the stopped Docker containers and dangling volumes on this box.",
+        "ok": [
+          "docker-management"
+        ],
+        "got": [
+          "docker-management"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 76,
+        "err": ""
+      },
+      {
+        "prompt": "What's 17 times 23?",
+        "ok": [],
+        "got": [],
+        "hit": true,
+        "wrong": [],
+        "ms": 65,
+        "err": ""
+      },
+      {
+        "prompt": "hi! how's it going?",
+        "ok": [],
+        "got": [],
+        "hit": true,
+        "wrong": [],
+        "ms": 62,
+        "err": ""
+      },
+      {
+        "prompt": "What's the capital of Australia?",
+        "ok": [],
+        "got": [],
+        "hit": true,
+        "wrong": [],
+        "ms": 63,
+        "err": ""
+      },
+      {
+        "prompt": "Thanks, that worked.",
+        "ok": [],
+        "got": [],
+        "hit": true,
+        "wrong": [],
+        "ms": 67,
+        "err": ""
+      },
+      {
+        "prompt": "Translate 'good morning' into French.",
+        "ok": [],
+        "got": [
+          "humanizer"
+        ],
+        "hit": false,
+        "wrong": [
+          "humanizer"
+        ],
+        "ms": 65,
+        "err": ""
+      },
+      {
+        "prompt": "In one sentence, what is a hash map?",
+        "ok": [],
+        "got": [],
+        "hit": true,
+        "wrong": [],
+        "ms": 64,
+        "err": ""
+      },
+      {
+        "prompt": "Remind me what the difference between TCP and UDP is.",
+        "ok": [],
+        "got": [
+          "mcp-builder"
+        ],
+        "hit": false,
+        "wrong": [
+          "mcp-builder"
+        ],
+        "ms": 66,
+        "err": ""
+      }
+    ]
+  },
+  "llm": {
+    "accuracy": 1.0,
+    "hit@load": 1.0,
+    "clean_none": 1.0,
+    "wrong_loads": 14,
+    "ms_median": 4296,
+    "ms_p90": 8120,
+    "errors": 0,
+    "rows": [
+      {
+        "prompt": "Build a landing page for my solar bike light startup, three pricing tiers and an FAQ.",
+        "ok": [
+          "landing-page-design",
+          "frontend-design",
+          "design-taste-frontend",
+          "impeccable",
+          "claude-design",
+          "scrollcraft"
+        ],
+        "got": [
+          "landing-page-design",
+          "frontend-design"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4331,
+        "err": ""
+      },
+      {
+        "prompt": "Make the dashboard UI in app/components look less generic, it feels like a bootstrap template.",
+        "ok": [
+          "frontend-design",
+          "design-taste-frontend",
+          "impeccable",
+          "emil-design-eng"
+        ],
+        "got": [
+          "design-taste-frontend",
+          "impeccable"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 8055,
+        "err": ""
+      },
+      {
+        "prompt": "Audit my site's HTML for accessibility and UX problems and list them by file and line.",
+        "ok": [
+          "web-design-guidelines",
+          "impeccable",
+          "dogfood"
+        ],
+        "got": [
+          "web-design-guidelines",
+          "agent-browser"
+        ],
+        "hit": true,
+        "wrong": [
+          "agent-browser"
+        ],
+        "ms": 4439,
+        "err": ""
+      },
+      {
+        "prompt": "Our Next.js app re-renders the whole product list on every keystroke in the search box. Speed it up.",
+        "ok": [
+          "vercel-react-best-practices",
+          "vercel-composition-patterns"
+        ],
+        "got": [
+          "vercel-react-best-practices",
+          "systematic-debugging"
+        ],
+        "hit": true,
+        "wrong": [
+          "systematic-debugging"
+        ],
+        "ms": 4935,
+        "err": ""
+      },
+      {
+        "prompt": "Turn this static pricing card into a short looping animation I can post as a video.",
+        "ok": [
+          "design-to-motion",
+          "hyperframes",
+          "remotion-best-practices"
+        ],
+        "got": [
+          "design-to-motion",
+          "hyperframes"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4424,
+        "err": ""
+      },
+      {
+        "prompt": "Make a scroll-driven product story page where the phone rotates as you scroll.",
+        "ok": [
+          "scrollcraft",
+          "landing-page-design",
+          "frontend-design"
+        ],
+        "got": [
+          "scrollcraft",
+          "design-to-motion"
+        ],
+        "hit": true,
+        "wrong": [
+          "design-to-motion"
+        ],
+        "ms": 4435,
+        "err": ""
+      },
+      {
+        "prompt": "The nightly billing job double-charges some customers but only in production. Find out why.",
+        "ok": [
+          "diagnosing-bugs",
+          "systematic-debugging"
+        ],
+        "got": [
+          "diagnosing-bugs",
+          "deep-research"
+        ],
+        "hit": true,
+        "wrong": [
+          "deep-research"
+        ],
+        "ms": 8884,
+        "err": ""
+      },
+      {
+        "prompt": "Add a CSV export feature to the reports module, test-first please.",
+        "ok": [
+          "tdd",
+          "test-driven-development"
+        ],
+        "got": [
+          "tdd",
+          "sandbox-coding"
+        ],
+        "hit": true,
+        "wrong": [
+          "sandbox-coding"
+        ],
+        "ms": 4447,
+        "err": ""
+      },
+      {
+        "prompt": "Review the changes in my last commit before I push to main.",
+        "ok": [
+          "code-review",
+          "requesting-code-review",
+          "caveman-review"
+        ],
+        "got": [
+          "code-review",
+          "caveman-review"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4372,
+        "err": ""
+      },
+      {
+        "prompt": "Rename every call of getUser( to fetchUser( across the TypeScript codebase without touching strings or comments.",
+        "ok": [
+          "ast-grep"
+        ],
+        "got": [
+          "ast-grep",
+          "targeted-edits"
+        ],
+        "hit": true,
+        "wrong": [
+          "targeted-edits"
+        ],
+        "ms": 8452,
+        "err": ""
+      },
+      {
+        "prompt": "Our REST endpoint /v2/orders returns 401 even with a valid token. Help me debug it.",
+        "ok": [
+          "rest-graphql-debug",
+          "diagnosing-bugs"
+        ],
+        "got": [
+          "rest-graphql-debug"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4200,
+        "err": ""
+      },
+      {
+        "prompt": "Write an MCP server that exposes our Postgres read replica as tools for an agent.",
+        "ok": [
+          "mcp-builder"
+        ],
+        "got": [
+          "mcp-builder",
+          "supabase-postgres-best-practices"
+        ],
+        "hit": true,
+        "wrong": [
+          "supabase-postgres-best-practices"
+        ],
+        "ms": 4752,
+        "err": ""
+      },
+      {
+        "prompt": "Click through the signup flow on localhost:3000 and tell me if the confirmation email step breaks.",
+        "ok": [
+          "webapp-testing",
+          "agent-browser",
+          "dogfood"
+        ],
+        "got": [
+          "agent-browser",
+          "webapp-testing"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4360,
+        "err": ""
+      },
+      {
+        "prompt": "Fill in the vendor form on this website and download the PDF it generates.",
+        "ok": [
+          "agent-browser",
+          "webapp-testing"
+        ],
+        "got": [
+          "agent-browser",
+          "pdf"
+        ],
+        "hit": true,
+        "wrong": [
+          "pdf"
+        ],
+        "ms": 4284,
+        "err": ""
+      },
+      {
+        "prompt": "This Node service leaks memory over a few hours. Attach a debugger and find what holds the references.",
+        "ok": [
+          "node-inspect-debugger",
+          "diagnosing-bugs",
+          "systematic-debugging"
+        ],
+        "got": [
+          "node-inspect-debugger"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4270,
+        "err": ""
+      },
+      {
+        "prompt": "Step through this Python script in a debugger, it crashes somewhere in parse_config.",
+        "ok": [
+          "python-debugpy",
+          "diagnosing-bugs",
+          "systematic-debugging"
+        ],
+        "got": [
+          "python-debugpy",
+          "systematic-debugging"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 5336,
+        "err": ""
+      },
+      {
+        "prompt": "Generate developer docs with architecture diagrams for this repository.",
+        "ok": [
+          "code-wiki",
+          "architecture-diagram",
+          "codebase-inspection"
+        ],
+        "got": [
+          "code-wiki",
+          "architecture-diagram"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4238,
+        "err": ""
+      },
+      {
+        "prompt": "Our modules are tangled; suggest where to deepen interfaces and draw the module boundaries.",
+        "ok": [
+          "improve-codebase-architecture",
+          "codebase-design"
+        ],
+        "got": [
+          "architecture-diagram",
+          "codebase-design"
+        ],
+        "hit": true,
+        "wrong": [
+          "architecture-diagram"
+        ],
+        "ms": 8120,
+        "err": ""
+      },
+      {
+        "prompt": "Set up pre-commit hooks so prettier and the type checker run before every commit.",
+        "ok": [
+          "setup-pre-commit"
+        ],
+        "got": [
+          "setup-pre-commit"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4106,
+        "err": ""
+      },
+      {
+        "prompt": "Write a commit message for the staged changes.",
+        "ok": [
+          "caveman-commit"
+        ],
+        "got": [
+          "caveman-commit"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4197,
+        "err": ""
+      },
+      {
+        "prompt": "Optimise these slow Postgres queries and fix the missing indexes on the orders table.",
+        "ok": [
+          "supabase-postgres-best-practices"
+        ],
+        "got": [
+          "supabase-postgres-best-practices",
+          "diagnosing-bugs"
+        ],
+        "hit": true,
+        "wrong": [
+          "diagnosing-bugs"
+        ],
+        "ms": 4790,
+        "err": ""
+      },
+      {
+        "prompt": "Write the Prisma query for users with more than 3 orders in the last month.",
+        "ok": [
+          "prisma-client-api"
+        ],
+        "got": [
+          "prisma-client-api"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4261,
+        "err": ""
+      },
+      {
+        "prompt": "Clean up and simplify the code I changed today.",
+        "ok": [
+          "simplify-code"
+        ],
+        "got": [
+          "simplify-code",
+          "targeted-edits"
+        ],
+        "hit": true,
+        "wrong": [
+          "targeted-edits"
+        ],
+        "ms": 4536,
+        "err": ""
+      },
+      {
+        "prompt": "Here is a stripped ELF crackme, recover the serial check algorithm.",
+        "ok": [
+          "reverse-engineering",
+          "reverse-engineer"
+        ],
+        "got": [
+          "reverse-engineering"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4197,
+        "err": ""
+      },
+      {
+        "prompt": "Disassemble this firmware update and figure out what changed between v1.2 and v1.3.",
+        "ok": [
+          "reverse-engineering",
+          "reverse-engineer"
+        ],
+        "got": [
+          "reverse-engineer",
+          "reverse-engineering"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4462,
+        "err": ""
+      },
+      {
+        "prompt": "We have written permission to pentest staging.example.com; do recon and test the login for injection.",
+        "ok": [
+          "web-pentest"
+        ],
+        "got": [
+          "web-pentest",
+          "domain-intel"
+        ],
+        "hit": true,
+        "wrong": [
+          "domain-intel"
+        ],
+        "ms": 4520,
+        "err": ""
+      },
+      {
+        "prompt": "A dependency we use got a suspicious new release on GitHub; investigate whether it was compromised.",
+        "ok": [
+          "oss-forensics"
+        ],
+        "got": [
+          "oss-forensics",
+          "github"
+        ],
+        "hit": true,
+        "wrong": [
+          "github"
+        ],
+        "ms": 8216,
+        "err": ""
+      },
+      {
+        "prompt": "List the subdomains and certificate history for example.org.",
+        "ok": [
+          "domain-intel"
+        ],
+        "got": [
+          "domain-intel"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4165,
+        "err": ""
+      },
+      {
+        "prompt": "Convert this Word contract to PDF and extract every deadline and obligation into a table.",
+        "ok": [
+          "document-to-action-items",
+          "docx",
+          "pdf"
+        ],
+        "got": [
+          "docx",
+          "pdf"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4309,
+        "err": ""
+      },
+      {
+        "prompt": "Build a quarterly sales workbook with formulas and a chart from this CSV.",
+        "ok": [
+          "xlsx"
+        ],
+        "got": [
+          "xlsx"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4066,
+        "err": ""
+      },
+      {
+        "prompt": "Make a 10-slide deck summarising our Q3 results.",
+        "ok": [
+          "powerpoint"
+        ],
+        "got": [
+          "powerpoint",
+          "claude-design"
+        ],
+        "hit": true,
+        "wrong": [
+          "claude-design"
+        ],
+        "ms": 4358,
+        "err": ""
+      },
+      {
+        "prompt": "Find recent arXiv papers on speculative decoding and summarise the main ideas.",
+        "ok": [
+          "arxiv",
+          "research",
+          "deep-research"
+        ],
+        "got": [
+          "arxiv",
+          "deep-research"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4403,
+        "err": ""
+      },
+      {
+        "prompt": "Research what the evidence says about four-day work weeks and cite sources.",
+        "ok": [
+          "deep-research",
+          "research",
+          "grounded-citations"
+        ],
+        "got": [
+          "deep-research"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4138,
+        "err": ""
+      },
+      {
+        "prompt": "Summarise this YouTube video into a blog post.",
+        "ok": [
+          "youtube-content"
+        ],
+        "got": [
+          "youtube-content"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4056,
+        "err": ""
+      },
+      {
+        "prompt": "Reproduce the results of the paper in this repo: set up the environment and run the main experiment.",
+        "ok": [
+          "repo-intake-and-plan",
+          "env-and-assets-bootstrap",
+          "minimal-run-and-audit"
+        ],
+        "got": [
+          "env-and-assets-bootstrap",
+          "minimal-run-and-audit"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4681,
+        "err": ""
+      },
+      {
+        "prompt": "Turn my meeting notes into decisions, owners and tickets.",
+        "ok": [
+          "meeting-action-items",
+          "to-tickets"
+        ],
+        "got": [
+          "meeting-action-items"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4111,
+        "err": ""
+      },
+      {
+        "prompt": "I want to rebuild our auth system. Grill me on the plan before we write any code.",
+        "ok": [
+          "grill-me",
+          "grilling",
+          "grill-with-docs"
+        ],
+        "got": [
+          "grill-me"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4119,
+        "err": ""
+      },
+      {
+        "prompt": "Break this feature spec into small implementable tickets.",
+        "ok": [
+          "to-tickets",
+          "to-spec"
+        ],
+        "got": [
+          "to-tickets"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4158,
+        "err": ""
+      },
+      {
+        "prompt": "Rewrite this paragraph so it doesn't sound like AI wrote it.",
+        "ok": [
+          "humanizer"
+        ],
+        "got": [
+          "humanizer"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 3944,
+        "err": ""
+      },
+      {
+        "prompt": "Draw a hand-drawn style sequence diagram of our OAuth flow.",
+        "ok": [
+          "excalidraw",
+          "architecture-diagram"
+        ],
+        "got": [
+          "excalidraw"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 8241,
+        "err": ""
+      },
+      {
+        "prompt": "Run and clean up the stopped Docker containers and dangling volumes on this box.",
+        "ok": [
+          "docker-management"
+        ],
+        "got": [
+          "docker-management"
+        ],
+        "hit": true,
+        "wrong": [],
+        "ms": 4104,
+        "err": ""
+      },
+      {
+        "prompt": "What's 17 times 23?",
+        "ok": [],
+        "got": [],
+        "hit": true,
+        "wrong": [],
+        "ms": 4018,
+        "err": ""
+      },
+      {
+        "prompt": "hi! how's it going?",
+        "ok": [],
+        "got": [],
+        "hit": true,
+        "wrong": [],
+        "ms": 3952,
+        "err": ""
+      },
+      {
+        "prompt": "What's the capital of Australia?",
+        "ok": [],
+        "got": [],
+        "hit": true,
+        "wrong": [],
+        "ms": 3906,
+        "err": ""
+      },
+      {
+        "prompt": "Thanks, that worked.",
+        "ok": [],
+        "got": [],
+        "hit": true,
+        "wrong": [],
+        "ms": 3951,
+        "err": ""
+      },
+      {
+        "prompt": "Translate 'good morning' into French.",
+        "ok": [],
+        "got": [],
+        "hit": true,
+        "wrong": [],
+        "ms": 3983,
+        "err": ""
+      },
+      {
+        "prompt": "In one sentence, what is a hash map?",
+        "ok": [],
+        "got": [],
+        "hit": true,
+        "wrong": [],
+        "ms": 3951,
+        "err": ""
+      },
+      {
+        "prompt": "Remind me what the difference between TCP and UDP is.",
+        "ok": [],
+        "got": [],
+        "hit": true,
+        "wrong": [],
+        "ms": 3989,
+        "err": ""
+      }
+    ]
+  }
+}
