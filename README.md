@@ -11,6 +11,14 @@ A fully local LLM agent stack and the toolbox that backs it. Two parts, one repo
 
 This repo holds code and configuration only. Model weights, Hermes home directories, the HUD database, logs, virtualenvs, the micromamba environment and every `.env` file are excluded by `.gitignore` and are never committed. The public hostname of the reference deployment is replaced by `EXAMPLE_HOST`.
 
+## Set it up with Claude Code
+
+This repo includes `SETUP_WITH_CLAUDE.md`, a guided setup prompt. Claude Code reads it, checks your GPU and system, installs what is missing (asking first), helps you pick a model that fits, starts each part and checks it, and then tells you what to do next. Install [Claude Code](https://claude.com/claude-code), open a terminal in the cloned folder and run:
+
+```sh
+claude "Read SETUP_WITH_CLAUDE.md and set this project up for me"
+```
+
 ## Getting started
 
 This guide takes you from nothing to three working pieces: the model server, the web HUD and the `tb` toolbox. It assumes Linux (Ubuntu or Debian). Every command goes into a terminal. Lines that start with `#` are comments; you do not need to type them.
