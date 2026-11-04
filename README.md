@@ -39,3 +39,7 @@ toolbox/bin/tb list
 ## License
 
 MIT. See `LICENSE`. Third-party components (llama.cpp, Hermes Agent, SearXNG, Crawl4AI, Qdrant, micromamba) are not vendored here and keep their own licences.
+
+---
+
+made by IWDissi and the fabulous claude assistant 😋
