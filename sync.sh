@@ -23,4 +23,5 @@ rsync -a --delete --prune-empty-dirs \
 mkdir -p "$D/toolbox/skills"; touch "$D/toolbox/skills/.gitkeep"
 # scrub the public hostname
 grep -rlI 'iwd\.fish' "$D/local-agent" "$D/toolbox" 2>/dev/null | xargs -r sed -i 's#https://www\.iwd\.fish#https://EXAMPLE_HOST#g; s#https://iwd\.fish#https://EXAMPLE_HOST#g; s#www\.iwd\.fish#EXAMPLE_HOST#g; s#iwd\.fish#EXAMPLE_HOST#g'
+sed -i 's/secret_key: "[0-9a-f]\{64\}"/secret_key: "CHANGE_ME_run_openssl_rand_hex_32"/' "$D/local-agent/services/searxng/settings.yml"
 echo "synced into $D"; git -C "$D" status --short | head

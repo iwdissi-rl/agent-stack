@@ -3,7 +3,7 @@ use_default_settings: true
 general:
   instance_name: "local-agent-search"
 server:
-  secret_key: "c4dbc09715a12e8ba7deee8e3c1419a0d5ee13e987df414cbbe5004baf3821ae"
+  secret_key: "CHANGE_ME_run_openssl_rand_hex_32"
   limiter: false          # single local client; the bot limiter would block Hermes
   image_proxy: false
   method: "GET"

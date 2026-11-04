@@ -26,6 +26,7 @@ local-agent/evals/skillbench/results/
 **/opt/
 **/cache/
 **/fonts/
+!local-agent/hud/static/fonts/
 node_modules/
 __pycache__/
 *.pyc
